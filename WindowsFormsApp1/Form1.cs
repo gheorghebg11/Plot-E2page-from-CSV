@@ -21,6 +21,8 @@ namespace WindowsFormsApp1
         Custom = 6
     }
 
+
+
     public partial class Form1 : Form
     {
         // -------------------------------------------------------- Fields and Properties --------------------------------------------------------
@@ -123,6 +125,8 @@ namespace WindowsFormsApp1
         static private bool ShowWarnings = true;
         #endregion
 
+        private fmath.controls.MathMLFormulaControl mathMLViewer;
+
         // -------------------------------------------------------- Constructors --------------------------------------------------------
 
         public Form1()
@@ -165,6 +169,27 @@ namespace WindowsFormsApp1
             Controls.Add(panel1);
 
             //this.DoubleBuffered = true;
+
+            mathMLViewer = new fmath.controls.MathMLFormulaControl();
+            fmath.controls.MathMLFormulaControl.setFolderUrlForFonts(@"C:\Program Files (x86)\MiKTeX 2.9\tex\latex");
+            fmath.controls.MathMLFormulaControl.setFolderUrlForGlyphs(@"C:\Program Files (x86)\MiKTeX 2.9\tex\latex");
+
+            mathMLViewer.latex = true;
+
+            mathMLViewer.AutoScroll = true;
+            mathMLViewer.BackColor = System.Drawing.Color.Transparent;
+            mathMLViewer.Contents = "<math><mtext>Select Formula</mtext></math>";
+            mathMLViewer.Font = new System.Drawing.Font("Harlow Solid Italic", 24F,
+                System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            mathMLViewer.ForeColor = System.Drawing.SystemColors.WindowText;
+            mathMLViewer.Location = new System.Drawing.Point(6, 7);
+            mathMLViewer.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            mathMLViewer.Name = "mathMLViewer";
+            mathMLViewer.Size = new System.Drawing.Size(751, 399);
+            mathMLViewer.TabIndex = 0;
+            mathMLViewer.Contents = @"\(x^2+3\)";
+
+            panel1.Controls.Add(mathMLViewer);
         }
 
         // -------------------------------------------------------- Methods --------------------------------------------------------
@@ -262,13 +287,19 @@ namespace WindowsFormsApp1
 
                 PrepareMenus(sender, e);
 
-                CreateGraph();             
+                CreateGraph();
+                
             }
             else
             {
                 MessageBox.Show("You already have a file opened, duh, restart the program to open a new file.");
             }
-        }
+
+            
+
+
+
+    }
 
         private void GetInfo_button_Click(object sender, EventArgs e) // To implement
         {
@@ -868,7 +899,6 @@ namespace WindowsFormsApp1
         }
 
         #endregion
-
 
     }
 
