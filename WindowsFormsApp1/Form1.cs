@@ -125,6 +125,7 @@ namespace WindowsFormsApp1
         static private bool ShowWarnings = true;
         #endregion
 
+       
         // -------------------------------------------------------- Constructors --------------------------------------------------------
 
         public Form1()
@@ -174,6 +175,7 @@ namespace WindowsFormsApp1
             filePath = Path.GetFullPath(Path.Combine(filePath, @"..\..\Resources\FMathML"));
             fmath.controls.MathMLFormulaControl.setFolderUrlForFonts(filePath);
             fmath.controls.MathMLFormulaControl.setFolderUrlForGlyphs(filePath);
+            
 
         }
 
@@ -189,6 +191,7 @@ namespace WindowsFormsApp1
         public void Refresh_button(object sender, EventArgs e)
         {
             RefreshGraph();
+
         }
 
         /// <summary>
@@ -280,20 +283,6 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("You already have a file opened, duh, restart the program to open a new file.");
             }
-
-            mathMLViewer = new fmath.controls.MathMLFormulaControl();
-            mathMLViewer.latex = true;
-            //mathMLViewer.AutoScroll = true;
-            //mathMLViewer.BackColor = System.Drawing.Color.Transparent;
-            //mathMLViewer.Font = new System.Drawing.Font("Palatino", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //mathMLViewer.ForeColor = System.Drawing.SystemColors.WindowText;
-            mathMLViewer.Location = new System.Drawing.Point(6, 7);
-            //mathMLViewer.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            //mathMLViewer.Name = "mathMLViewer";
-            //mathMLViewer.Size = new System.Drawing.Size(1751, 1399);
-            //mathMLViewer.TabIndex = 0;
-            mathMLViewer.Contents = @"$\Delta h_1^3 \ \ h_3 \ \ c_0 \ \ Q'$";
-            //panel1.Controls.Add(mathMLViewer);
 
         }
 
