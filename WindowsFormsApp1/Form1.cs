@@ -125,8 +125,6 @@ namespace WindowsFormsApp1
         static private bool ShowWarnings = true;
         #endregion
 
-        private fmath.controls.MathMLFormulaControl mathMLViewer;
-
         // -------------------------------------------------------- Constructors --------------------------------------------------------
 
         public Form1()
@@ -167,36 +165,15 @@ namespace WindowsFormsApp1
             panel1.Controls.Add(PictureBox);
             PictureBox.Parent = panel1; // It does nothing, is it to link them or something ?
             Controls.Add(panel1);
+            
 
             //this.DoubleBuffered = true;
 
-            mathMLViewer = new fmath.controls.MathMLFormulaControl();
-            //fmath.controls.MathMLFormulaControl.setFolderUrlForFonts(@"C:\Program Files (x86)\MiKTeX 2.9\tex\latex");
-            //fmath.controls.MathMLFormulaControl.setFolderUrlForGlyphs(@"C:\Program Files (x86)\MiKTeX 2.9\tex\latex");
-
+            // loads the latex fonts for FMathML
             string filePath = Application.StartupPath.ToString();
             filePath = Path.GetFullPath(Path.Combine(filePath, @"..\..\Resources\FMathML"));
-
             fmath.controls.MathMLFormulaControl.setFolderUrlForFonts(filePath);
             fmath.controls.MathMLFormulaControl.setFolderUrlForGlyphs(filePath);
-
-            mathMLViewer.latex = true;
-            //mathMLViewer.AutoScroll = true;
-            //mathMLViewer.BackColor = System.Drawing.Color.Transparent;
-            //mathMLViewer.Contents = "<math><mtext>Select Formula</mtext></math>";
-            mathMLViewer.Font = new System.Drawing.Font("Palatino", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            //mathMLViewer.ForeColor = System.Drawing.SystemColors.WindowText;
-            //mathMLViewer.Location = new System.Drawing.Point(6, 7);
-            //mathMLViewer.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            //mathMLViewer.Name = "mathMLViewer";
-            //mathMLViewer.Size = new System.Drawing.Size(751, 399);
-            //mathMLViewer.TabIndex = 0;
-            mathMLViewer.Contents = @"$\Delta h_1^3 c_0 Q'$";
-
-            panel1.Controls.Add(mathMLViewer);
-
-
-
 
         }
 
@@ -290,8 +267,9 @@ namespace WindowsFormsApp1
         {
             if (E2data == null)
             {
-                OpenAndParseFile(@"C:\Users\Bogdan\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\\E2chartdata132shorter.csv");
-                //OpenAndParseFile(@"E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\\E2chartdata132shorter.csv");
+                string filePath = Application.StartupPath.ToString();
+                filePath = Path.GetFullPath(Path.Combine(filePath, @"..\..\...\\E2chartdata132shorter.csv"));
+                OpenAndParseFile(filePath);
 
                 PrepareMenus(sender, e);
 
@@ -303,11 +281,21 @@ namespace WindowsFormsApp1
                 MessageBox.Show("You already have a file opened, duh, restart the program to open a new file.");
             }
 
-            
+            mathMLViewer = new fmath.controls.MathMLFormulaControl();
+            mathMLViewer.latex = true;
+            //mathMLViewer.AutoScroll = true;
+            //mathMLViewer.BackColor = System.Drawing.Color.Transparent;
+            //mathMLViewer.Font = new System.Drawing.Font("Palatino", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //mathMLViewer.ForeColor = System.Drawing.SystemColors.WindowText;
+            mathMLViewer.Location = new System.Drawing.Point(6, 7);
+            //mathMLViewer.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            //mathMLViewer.Name = "mathMLViewer";
+            //mathMLViewer.Size = new System.Drawing.Size(1751, 1399);
+            //mathMLViewer.TabIndex = 0;
+            mathMLViewer.Contents = @"$\Delta h_1^3 \ \ h_3 \ \ c_0 \ \ Q'$";
+            //panel1.Controls.Add(mathMLViewer);
 
-
-
-    }
+        }
 
         private void GetInfo_button_Click(object sender, EventArgs e) // To implement
         {

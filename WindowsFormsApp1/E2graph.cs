@@ -291,6 +291,7 @@ namespace WindowsFormsApp1
                         pointLabelY.X -= 2 * RatioInputToPixelOnBitmap;
                 }
             }
+
         }
 
         private void DrawPoint(PointF point, Pen pen)
@@ -462,8 +463,12 @@ namespace WindowsFormsApp1
 
                                 currentPoint.X += E2data.Elements[x][y][i].OffsetX + E2data.Elements[x][y][i].OffsetXlabel;
                                 currentPoint.Y += E2data.Elements[x][y][i].OffsetY + E2data.Elements[x][y][i].OffsetYlabel;
-                                
-                                Graph.DrawString(E2data.Elements[x][y][i].LatexLabel, ConstructLatexFont(labelSize * RatioInputToPixelOnBitmap), Brushes.Black, currentPoint, formatCentered);
+
+                                fmath.MathMLFormula mathMLFormula = new fmath.MathMLFormula();
+                                mathMLFormula.convertLatexToMathML(E2data.Elements[x][y][i].LatexLabel);
+
+
+                                Graph.DrawString(mathMLFormula, ConstructLatexFont(labelSize * RatioInputToPixelOnBitmap), Brushes.Black, currentPoint, formatCentered);
                             }
                         }
                     }
