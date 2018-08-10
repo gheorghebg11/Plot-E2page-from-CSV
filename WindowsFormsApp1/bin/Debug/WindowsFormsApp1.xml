@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WindowsFormsApp1</name>
+    </assembly>
+    <members>
+        <member name="M:WindowsFormsApp1.E2data.#ctor(System.String,System.Int32,System.Int32,System.String[][],System.String[][],System.Drawing.Color)">
+            <summary> Constructor for a E2data type </summary>
+            <remark> Most of the work in this class is done by the constructor, which parses the .csv document and initiliazes a list of elements as well as all extensions.</remark>
+            <param name="filePath"> the path for the .csv file </param>
+            <param name="approxMaxStem"> an upper bound on the number of stems, i.e., x coord (can be large, better safe than sorry) </param>
+            <param name="approxMaxFilt"> an upper bound on the max Adams filtration (can be large, better safe than sorry) </param>
+            <param name="wordsforNonExtensionAttributes"> In entry n contains all the words for : [0] name, [1] stem, [2] filt, [3] weight, [4] tau torsion, [5] label </param>
+            <param name="wordsforExtensionAttributes"> In entry n contains all the words for : [0] extension target, [1] extension info, [2] localization </param>
+        </member>
+        <member name="M:WindowsFormsApp1.E2data.MakeTableOfIndices(System.String[],System.String[][],System.String[][])">
+            <summary>
+            This method parses the header. It identifies the columns of name, stem, filt, weight and tautorsion, identifies the columns of the extenisons, and links the extension info and the extension target of together
+            </summary>
+            <param name="header"> Array of strings containing the names of the columns in the .csv</param>
+            <param name="wordsforNonExtensionAttributes"> In entry n contains all the words for : [0] name, [1] stem, [2] filt, [3] weight, [4] tau torsion, [5] label, [6] angle </param>
+            <param name="wordsforExtensionAttributes"> In entry n contains all the words for : [0] extension target, [1] extension info, [2] localization </param>
+        </member>
+        <member name="M:WindowsFormsApp1.E2data.GetExtTarget(WindowsFormsApp1.Element,System.Int32,System.String)">
+            <summary>
+            Given an element and the index in Extensions of the type of extension, the method returns the extension of the element
+            </summary>
+            <param name="source">Element that we extend</param>
+            <param name="indexOfExtinExtensions">Index in Extensions of the type of extension</param>
+            <param name="wordForInfiniteExtension"> The word for an infinite tower of extensions (such as h1-periodic stuff) </param>
+            <returns>Returns an int[3] containing (stem, filt, indexAtStemFilt) to locate it in Element. If the value is null, it means TODOOOO</returns>
+        </member>
+        <member name="M:WindowsFormsApp1.Element.#ctor(System.String[],System.Int32[]@,System.Int32,System.Int32,System.Collections.Generic.List{System.Object[]}@,System.Boolean)">
+            <summary> Constructor for Element whose input is a line from the .csv file as well as a recipe to know what information is where </summary>
+            <param name="lineFromCSV">The line from the .csv file given as an array of string, cell by cell</param>
+            <param name="indicesNonExt">The indexes are: [0] name, [1] stem, [2] filtration, [3] weight, [4] tauTorsion</param>
+            <param name="elemNbrinCSV">The number of the line in the .csv (have to add 2 to recover the line in the .csv because of the header)</param>
+            <param name="elemNbrinElematStemFilt">The index of the element in the List at Elements[stem][filt]</param>
+            <param name="indicesHeaderForExt">List where each object contains (string, int), where the string is the name of the extension element and int is its column in the .csv file and thus in <paramref name="lineFromCSV"></paramref> </param>
+            <param name="isPeriodicAndLastPoint">Boolean indicating wheter or not there is a periodic tower of extensions starting from this element (the extension element should be implicit somehow) <paramref name="lineFromCSV"></paramref> </param>
+        </member>
+        <member name="M:WindowsFormsApp1.Element.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{System.Object[]}@,System.Boolean)">
+            <summary>
+            This constructor is only used when I have to create an extra point which does not appear in the .csv file. Usually because there is an infinite tower of extensions so we create one more point
+            </summary>
+            <param name="concatName"></param>
+            <param name="stem"></param>
+            <param name="filt"></param>
+            <param name="weight"></param>
+            <param name="tautorsion"></param>
+            <param name="elemnbrinElemstemfilt"></param>
+            <param name="indicesHeaderForExt"></param>
+            <param name="isPeriodicAndLastPoint"></param>
+        </member>
+        <member name="M:WindowsFormsApp1.Form1.Refresh_button(System.Object,System.EventArgs)">
+            <summary>
+            Refresh button which redraws the whole diagram (but does not reload the document)
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WindowsFormsApp1.Form1.ChooseFormat_SelectedIndexChanged(System.Object,System.EventArgs)">
+            <summary>
+            Box where you choose the format (and hence the number of pixels) of the document
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WindowsFormsApp1.Form1.Zoom_scroll(System.Object,System.EventArgs)">
+            <summary>
+            Scrolling button to zoom in/out. The minimum zoom is the default size, the maximum is the biggest zoom which does not loose quality.
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WindowsFormsApp1.Form1.Resolution_scroll(System.Object,System.EventArgs)">
+            <summary>
+            Button to improve the resolution, without changing the format mode
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:WindowsFormsApp1.Form1.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:WindowsFormsApp1.Form1.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:WindowsFormsApp1.Form1.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:WindowsFormsApp1.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:WindowsFormsApp1.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsApp1.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsApp1.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:WindowsFormsApp1.Properties.Resources.latexfont">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+        <member name="P:WindowsFormsApp1.Properties.Resources.pala">
+            <summary>
+              Looks up a localized resource of type System.Byte[].
+            </summary>
+        </member>
+    </members>
+</doc>

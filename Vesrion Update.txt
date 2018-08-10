@@ -1,0 +1,18 @@
+Version Update 1 --> 2:
+	- This now deprecated, as from the v2, I will stop using the class Chart to draw the chart. It's just missing so many features and it's more annoying to implement them than implementing them from scratch. Examples:
+		- labels cannot be hidden, only erased or put them as transparent (but they're still there and clashing with other labels).
+		- segments cannot be drawned, just lines beteween all the points (so would have to create a series per segment).
+		
+Version Update 2 --> 3 :
+	- Essentially changing the method of drawing and refreshing. It used to be that each small change such as a dot change or a change in resolution (or maybe even a zoom ?) would completely recreate the E2graph from the E2data. Now I'll have the data computed and drawn at the beginning and
+		- a change in resolution will just multiply the the coordinates and redraw
+		- try to implement that a local change does not need to redraw all, but just locally, although maybe it's not possible easily.
+		
+Version Update 3.2 --> 3.3 :
+	- The big change I want to do here is that I won't keep the Graphics object (as all the data is stored in E2data)
+	- I also want to get rid of recreating the graph when I only zoom (all the resolution is already there) and move points. The graph should only be recreated when I increase the resolution (I guess even when I decrease the resolution I could not recreate it all but just divide by the resolution factor change)
+	
+Version Update 3.3 --> 3.4 :
+	
+Version Update 3.4 --> 4 :
+	- Adding it on github

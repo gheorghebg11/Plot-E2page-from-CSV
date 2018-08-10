@@ -1,0 +1,45 @@
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\itextsharp.dll
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\itextsharp.pdfa.dll
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\itextsharp.xtra.dll
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\itextsharp.xml
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojResolveAssemblyReference.cache
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\Bogdan\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\itextsharp.dll
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\itextsharp.pdfa.dll
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\itextsharp.xtra.dll
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\itextsharp.xml
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojResolveAssemblyReference.cache
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+E:\Math ressources\Dropbox\Coding\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\itextsharp.dll
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\itextsharp.pdfa.dll
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\itextsharp.xtra.dll
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\bin\Debug\itextsharp.xml
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojResolveAssemblyReference.cache
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+C:\Users\Bogdan\Dropbox\Coding\C#\CsvToPdf\WindowsFormsApp1\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
