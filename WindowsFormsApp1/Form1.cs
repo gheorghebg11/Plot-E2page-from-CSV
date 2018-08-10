@@ -171,25 +171,33 @@ namespace WindowsFormsApp1
             //this.DoubleBuffered = true;
 
             mathMLViewer = new fmath.controls.MathMLFormulaControl();
-            fmath.controls.MathMLFormulaControl.setFolderUrlForFonts(@"C:\Program Files (x86)\MiKTeX 2.9\tex\latex");
-            fmath.controls.MathMLFormulaControl.setFolderUrlForGlyphs(@"C:\Program Files (x86)\MiKTeX 2.9\tex\latex");
+            //fmath.controls.MathMLFormulaControl.setFolderUrlForFonts(@"C:\Program Files (x86)\MiKTeX 2.9\tex\latex");
+            //fmath.controls.MathMLFormulaControl.setFolderUrlForGlyphs(@"C:\Program Files (x86)\MiKTeX 2.9\tex\latex");
+
+            string filePath = Application.StartupPath.ToString();
+            filePath = Path.GetFullPath(Path.Combine(filePath, @"..\..\Resources\FMathML"));
+
+            fmath.controls.MathMLFormulaControl.setFolderUrlForFonts(filePath);
+            fmath.controls.MathMLFormulaControl.setFolderUrlForGlyphs(filePath);
 
             mathMLViewer.latex = true;
-
-            mathMLViewer.AutoScroll = true;
-            mathMLViewer.BackColor = System.Drawing.Color.Transparent;
-            mathMLViewer.Contents = "<math><mtext>Select Formula</mtext></math>";
-            mathMLViewer.Font = new System.Drawing.Font("Harlow Solid Italic", 24F,
-                System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            mathMLViewer.ForeColor = System.Drawing.SystemColors.WindowText;
-            mathMLViewer.Location = new System.Drawing.Point(6, 7);
-            mathMLViewer.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            mathMLViewer.Name = "mathMLViewer";
-            mathMLViewer.Size = new System.Drawing.Size(751, 399);
-            mathMLViewer.TabIndex = 0;
-            mathMLViewer.Contents = @"\(x^2+3\)";
+            //mathMLViewer.AutoScroll = true;
+            //mathMLViewer.BackColor = System.Drawing.Color.Transparent;
+            //mathMLViewer.Contents = "<math><mtext>Select Formula</mtext></math>";
+            mathMLViewer.Font = new System.Drawing.Font("Palatino", 24F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            //mathMLViewer.ForeColor = System.Drawing.SystemColors.WindowText;
+            //mathMLViewer.Location = new System.Drawing.Point(6, 7);
+            //mathMLViewer.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
+            //mathMLViewer.Name = "mathMLViewer";
+            //mathMLViewer.Size = new System.Drawing.Size(751, 399);
+            //mathMLViewer.TabIndex = 0;
+            mathMLViewer.Contents = @"$\Delta h_1^3 c_0 Q'$";
 
             panel1.Controls.Add(mathMLViewer);
+
+
+
+
         }
 
         // -------------------------------------------------------- Methods --------------------------------------------------------

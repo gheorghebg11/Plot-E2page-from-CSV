@@ -255,3 +255,16 @@ C:\Users\Bogdan\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2pag
 C:\Users\Bogdan\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
 C:\Users\Bogdan\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\bin\Debug\WinMathML.dll
 C:\Users\Bogdan\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe.config
+E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.xml
+E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.exe
+E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\bin\Debug\WindowsFormsApp1.pdb
+E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\bin\Debug\WinMathML.dll
+E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csprojResolveAssemblyReference.cache
+E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Form1.resources
+E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.Properties.Resources.resources
+E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.GenerateResource.cache
+E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CoreCompileInputs.cache
+E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
+E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
+E:\Math ressources\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
