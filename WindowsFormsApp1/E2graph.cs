@@ -465,10 +465,10 @@ namespace WindowsFormsApp1
                                 currentPoint.Y += E2data.Elements[x][y][i].OffsetY + E2data.Elements[x][y][i].OffsetYlabel;
 
 
-                                //Graph.DrawString(E2data.Elements[x][y][i].LatexLabel, ConstructLatexFont(labelSize * RatioInputToPixelOnBitmap), Brushes.Black, currentPoint, formatCentered);
+                                Graph.DrawString(E2data.Elements[x][y][i].LatexLabel, ConstructLatexFont(labelSize * RatioInputToPixelOnBitmap), Brushes.Black, currentPoint, formatCentered);
 
-                                using(Bitmap bp = fmath.controls.MathMLFormulaControl.generateBitmapFromLatex("$c_0$"))
-                                    Graph.DrawImage(bp, currentPoint.X, currentPoint.Y, bp.Width, bp.Height);
+                                //using(Bitmap bp = fmath.controls.MathMLFormulaControl.generateBitmapFromLatex("$c_0$"))
+                                  //  Graph.DrawImage(bp, currentPoint.X, currentPoint.Y, bp.Width, bp.Height);
 
 
                             }

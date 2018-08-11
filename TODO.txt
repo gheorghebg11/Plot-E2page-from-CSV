@@ -5,7 +5,7 @@ TODO :
 	- If anything goes wrong, such as non-empty extension info with an empty extension target, then the code should return a warning.
 	- I don't think the "better quality" is slower than the not better quality mode, but it's nicer. Check out.
 	- Do I really need the class GeomPoint ? It doesn't have much and I could just add a point to E2data... (although its clearer like it is now..)
-	- Check options of the mathMLViewer. What more can I do there ? Do I need something else ? Ex: change font ?
+	- Check options of the mathMLViewer. What more can I do there ? Do I need something else ? Ex: change font 
 	
 IMPROVE FEATURE :
 	- so far it understands alone extensions if the element by which we extend exists in the E2 page (if it's an extension of 1), that is it deduces the stem filt weight automatically
@@ -51,3 +51,4 @@ ASK DAN:
 	- so extensions have colors, depending on the tau torsion of the target, but also depending or not if they hit powers of tau times a generator, these 2 notions never clash ? now it's coded so that the fact that we hit powers of tau times a generator takes priority.
 	- Elem in 107,24,58 appears twice in a row in the .csv with the name again, is it because there are 2 features in dr info ?
 	- MACROS FOR LATEX NAMES ??? t is \tau, k is \kappa, D is \D, 
+	- another idea is to not have the program output a pdf, but the necessary code to integrate in the .tex file. Would that work ? That would simplify my work as I don't have to compile latex code for the labels, axis, etc.
