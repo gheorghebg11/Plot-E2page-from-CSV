@@ -52,46 +52,63 @@
             <param name="indicesHeaderForExt"></param>
             <param name="isPeriodicAndLastPoint"></param>
         </member>
-        <member name="M:WindowsFormsApp1.Form1.Refresh_button(System.Object,System.EventArgs)">
+        <member name="M:WindowsFormsApp1.FormMainWindow.Refresh_button(System.Object,System.EventArgs)">
             <summary>
             Refresh button which redraws the whole diagram (but does not reload the document)
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:WindowsFormsApp1.Form1.ChooseFormat_SelectedIndexChanged(System.Object,System.EventArgs)">
+        <member name="M:WindowsFormsApp1.FormMainWindow.ChooseFormat_SelectedIndexChanged(System.Object,System.EventArgs)">
             <summary>
             Box where you choose the format (and hence the number of pixels) of the document
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:WindowsFormsApp1.Form1.Zoom_scroll(System.Object,System.EventArgs)">
+        <member name="M:WindowsFormsApp1.FormMainWindow.Zoom_scroll(System.Object,System.EventArgs)">
             <summary>
             Scrolling button to zoom in/out. The minimum zoom is the default size, the maximum is the biggest zoom which does not loose quality.
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="M:WindowsFormsApp1.Form1.Resolution_scroll(System.Object,System.EventArgs)">
+        <member name="M:WindowsFormsApp1.FormMainWindow.Resolution_scroll(System.Object,System.EventArgs)">
             <summary>
             Button to improve the resolution, without changing the format mode
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="F:WindowsFormsApp1.Form1.components">
+        <member name="F:WindowsFormsApp1.FormMainWindow.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:WindowsFormsApp1.Form1.Dispose(System.Boolean)">
+        <member name="M:WindowsFormsApp1.FormMainWindow.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:WindowsFormsApp1.Form1.InitializeComponent">
+        <member name="M:WindowsFormsApp1.FormMainWindow.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:WindowsFormsApp1.FormNotes.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:WindowsFormsApp1.FormNotes.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:WindowsFormsApp1.FormNotes.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
