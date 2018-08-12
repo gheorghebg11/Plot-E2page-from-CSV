@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
 
 
 
-    public partial class Form1 : Form
+    public partial class FormMainWindow : Form
     {
         // -------------------------------------------------------- Fields and Properties --------------------------------------------------------
 
@@ -128,7 +128,7 @@ namespace WindowsFormsApp1
        
         // -------------------------------------------------------- Constructors --------------------------------------------------------
 
-        public Form1()
+        public FormMainWindow()
         {
             InitializeComponent();
 

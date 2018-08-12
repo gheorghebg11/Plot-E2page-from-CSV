@@ -514,6 +514,8 @@ namespace WindowsFormsApp1
 
         public bool IsVisible { get; set; } = true;
 
+        public string Notes { get; set; }
+
         // -------------------------------------------------------- Constructors --------------------------------------------------------
         /// <summary> Constructor for Element whose input is a line from the .csv file as well as a recipe to know what information is where </summary>
         /// <param name="lineFromCSV">The line from the .csv file given as an array of string, cell by cell</param>
