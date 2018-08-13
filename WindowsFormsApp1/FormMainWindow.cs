@@ -623,7 +623,18 @@ namespace WindowsFormsApp1
 
                 header = header.Substring(0, header.Length - 2); //remove the last space and ,
 
+                for(int s=0; s<E2data.Elements.Length; s++)
+                {
+                    for(int f=0; f<E2data.Elements[i].Length; f++)
+                    {
+                        for(int i=0; i<E2data.Elements[s][f].Count; i++)
+                        {
+                            //string csvLine = AssembleCSVLine
 
+                        }
+
+                    }
+                }
 
 
                 string filePath = Application.StartupPath.ToString();
@@ -956,6 +967,15 @@ namespace WindowsFormsApp1
         private void PrepareMenus(object sender, EventArgs e)
         {
             CreateExtensionMenu(sender, e);
+        }
+
+        private string AssembleCSVLine()
+        {
+            string csvLine = System.String.Empty;
+
+
+
+            return csvLine;
         }
 
         #endregion

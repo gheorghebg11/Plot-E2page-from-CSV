@@ -1,4 +1,7 @@
 
+WORKING NOW ON:
+	- creating the .csv file to output
+
 IMPROVE FEATURE :
 	- so far it understands alone extensions if the element by which we extend exists in the E2 page (if it's an extension of 1), that is it deduces the stem filt weight automatically
 	- so far can only do extension by indecomposable I THINK	
