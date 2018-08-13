@@ -65,6 +65,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.Remove_button = new System.Windows.Forms.Button();
+            this.saveAsCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.trackbar_zoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackbar_resolution)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -130,7 +131,8 @@
             // 
             this.FileMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.propertiesToolStripMenuItem,
-            this.saveAsPdfToolStripMenuItem});
+            this.saveAsPdfToolStripMenuItem,
+            this.saveAsCSVToolStripMenuItem});
             this.FileMenu.Name = "FileMenu";
             resources.ApplyResources(this.FileMenu, "FileMenu");
             // 
@@ -320,7 +322,13 @@
             this.Remove_button.UseVisualStyleBackColor = true;
             this.Remove_button.Click += new System.EventHandler(this.ShowHide_button_Click);
             // 
-            // Form1
+            // saveAsCSVToolStripMenuItem
+            // 
+            this.saveAsCSVToolStripMenuItem.Name = "saveAsCSVToolStripMenuItem";
+            resources.ApplyResources(this.saveAsCSVToolStripMenuItem, "saveAsCSVToolStripMenuItem");
+            this.saveAsCSVToolStripMenuItem.Click += new System.EventHandler(this.saveAsCSVToolStripMenuItem_Click);
+            // 
+            // FormMainWindow
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -351,7 +359,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
-            this.Name = "Form1";
+            this.Name = "FormMainWindow";
             ((System.ComponentModel.ISupportInitialize)(this.trackbar_zoom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackbar_resolution)).EndInit();
             this.menuStrip1.ResumeLayout(false);
@@ -398,6 +406,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button Remove_button;
+        private System.Windows.Forms.ToolStripMenuItem saveAsCSVToolStripMenuItem;
     }
 }
 

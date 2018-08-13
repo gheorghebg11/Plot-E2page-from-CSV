@@ -1,0 +1,157 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc} %-- pour utiliser des accents en français
+\usepackage{amsmath,amssymb,amsthm} 
+\usepackage[round]{natbib}
+\usepackage{url}
+\usepackage{xspace}
+\usepackage[left=20mm,top=20mm]{geometry}
+\usepackage{mathpazo}
+\usepackage{hyperref}
+% \usepackage{draftwatermark}
+
+
+
+\title{Read Me - Manual}
+\author{Bogdan Gheorghe\\ \url{gheorghebg@gmail.com}}
+\date{\today}
+
+
+\begin{document}
+
+\maketitle
+
+%%%%
+\section{Prerequisites}
+
+\begin{itemize}
+	\item 
+\end{itemize}
+
+
+
+
+\section{Rule in the .csv:}
+
+\subsection{General}
+\begin{itemize}
+	\item the first line contains the header, see the specific columns for what is allowed in the header
+\end{itemize}
+		
+\subsection{Header}
+
+\begin{itemize}
+	\item it doesn't matter if there are capitals or spaces, as they are erased during parsing. Also, columns can be in any order
+	\item it is very easy in the code to add or remove a header name for a specific column. More precisely, if you want the column with homological filtration to be called "hom filt", only one line of code has to be changed to allow for this change. Similarly if you want to disallow the header for the stem to be called "s", only one line has to be changed.
+
+\end{itemize}
+		
+\subsection{Specific columns}	
+\begin{itemize}
+
+	\item{Name}
+	\begin{itemize}
+		\item the header for this column is "name"
+		\item it contains the mathematical name of the element
+		\item if it's a product of elements, there should be a space between each monomial
+		\item the symbol "t" stands for the specific motivic element $\tau$
+		\item the name of each monomial should be in one of the following formats
+		\begin{itemize}
+		\item "symbol$\_$index"
+		\item "symbol index"
+		\item "symbol$\_$index $\hat{}$ power"
+		\item "symbol index $\hat{}$ power"
+		\item "symbol $\hat{}$ power"
+\end{itemize}		 
+where symbol represents one or more letters (some of which could be capitalized), index represents the subscript and should be a number, and power represents the power and should be a number.
+		\item For example, all the following are acceptable $" k "$, $" h0 "$, $h0 \ \hat{} \ 2$, "$P \ \hat{} \ 2 h_1$, "t k" which stands for $\tau \times k$  , wherease "tk" would stand for an element named tk which is not $\tau$ divisible
+		\item For example, the following is not a correct format "h0h1" since there should be a space separating them
+	\end{itemize}
+	
+	\item{Label column}
+	\begin{itemize}
+		\item the header for this column is "label"
+		\item if it contains "auto", then the label will be drown and the latex code is automatically generated from the column containing the name of the element. If it contains "none" or if the cell is empty, the no label will be drown. If it contains anything else, then a label will be drawn with the verbatim latex code. (Note that if nothing is provided and the point happens to not be an extension, then a label will be generated and drown).
+		\item the software does its best to generate a latex code, but it might not know that "t" means $\tau$ and that "D" stands for $\Delta$ (in fact, it can't translate "D" into $\Delta$ as there is also the element $D$ that is used sometimes). Usually the points whose label is drown are not extensions, and so the computer cannot go and find an accurate label from a previous element, like it could if it was an extension. To ensure the correctness of the label, be sure to provide it when necessary. 
+	\end{itemize}
+	
+	\item{Angle}
+	\begin{itemize}
+		\item the header for this column is "angle"
+		\item it contains the angle to which the label will be drawn, which has to be a (signed) integer in degrees
+		\item the angle 0 corresponds to the point (1,0)
+		\item the angles 135 and - 225 are the same
+	\end{itemize}
+	
+	\item{Topological stem}
+	\begin{itemize}
+		\item the header for this column is either "stem" or "s"
+		\item it contains the topological stem of the element which has to be a number
+	\end{itemize}
+	
+	\item{Adams filtration}
+	\begin{itemize}
+		\item the header for this column is either "filtration", "filt" or "f"
+		\item it contains the Adams filtration of the element which has to be a number
+	\end{itemize}
+	
+	\item{Motivic weight}
+	\begin{itemize}
+		\item the header for this column is either "weight" or "w"
+		\item it contains the motivic weight of the element which has to be a number
+	\end{itemize}
+	
+	\item{Tau Torsion}
+	\begin{itemize}
+		\item the header for this column is either "ttorsion", "tautorsion" or "taut"
+		\item it contains the smallest power of tau, which annihilates it after multiplication
+		\item it has to be a number, or can be empty. The number 0 or an empty cell means that it is not tau torsion TODOOOO in code
+	\end{itemize}
+	
+	\item{Hidden Tau}
+	\begin{itemize}
+		\item the header for this column is 
+		\item it contains the power to which there is a TAU EXENSION IN MAY TO DOOO
+		\item it contains either the word "hid" or a positive integer. The wo
+	\end{itemize}
+	
+	\item{Extensions Target}
+	\begin{itemize}
+		\item the header for the columns for extensions have to either contain the word "target", "ext", or "extension". The leftover after erasing one of these three words (and extra spaces) should be the name of the element by which we multiply to create the extension.
+		\item no other column should contain any of these 3 words, in particular careful with the differential column which should not be called "drtarget" to avoid a clash.
+		\item it contains the target element after an extension by an element, i.e., a multiplication by an element.
+		\item it can either contain a name which has to follow the rules for a name (see the column Name for more details), or the word "loc". See Special rules below for the meaning of the word "loc".
+	\end{itemize}
+	
+	
+	\item{Extensions Info}
+	\begin{itemize}
+		\item the header has to contain the word "info". The leftover after erasing this word (and extra spaces) should be the name of the element by which we multiply to create the extension, and has to match a column for an extension target. It doesn't matter if the column for the extension info is before or after the column for the target, or even if they are next to each other.
+		\item it contains information about the extension, which can be of two different nature. It can contain the letter "h" which means hidden extension, resulting in a dotted line. It can also contain an expression of the form "tx" where x is a number and has to come immediately after the letter t, meaning that the extension is $tau^x$ torsion, resulting in changing the color of the line. It can also contain a mix of those, such as "h t3" or "t2h", where spaces are ignored.
+		\item if a cell extension info contains information but the associated cell extension target is empty, the information will be ignored.
+	\end{itemize}
+	\item{DIFF COLUMN}
+	\item{SHIFT COLUMN}
+\end{itemize}
+
+\section{Special Features}
+\begin{itemize}
+\item The quick open button will open a file with specific name in the base folder TODOOOOO
+\end{itemize}
+	
+\section{Things to add somewhere in this file}
+\begin{itemize}
+\item explain that item has its label printed if its not an extension
+if there is a column extension by h1 and the word "loc" appears, it is assumed that from there on the tower is all $tau^1$ torsion. 
+\item no commas are allowed in any column, as that would mess with the format of the .csv and would add an extra cell. If it happens, the line is ignored.
+\item by default, the label of an element is displayed if it is not the extension of an element, with the exception of 1 and the $h_i$'s.
+	
+\item Parameters to set:
+
+\item Colors:
+\item The label is shown by default if the element is not an extension. 
+\item 
+\end{itemize}
+
+\end{document}

@@ -1,4 +1,4 @@
-name,s,f,w,tautorsion,shift,hiddentau,h0info,h0target,h1info,h1target,h2info,h2target,h3info,h3target,label,angle,Dr inf000,dr,XX
+name,s,f,w,tautorsion,shift,hiddentau,h0info,h0target,h1info,h1target,h2info,h2target,h3info,h3target,label,angle,Dr inf00,dr,XX
 1,0,0,0,0,0,,,h0,,h1,,h2,,h3,,,,,XX
 h0,0,1,0,0,0,,,h0^2,,,,h0 h2,,h0 h3,h_0,210,,,gen
 h0^2,0,2,0,0,0,,,h0^3,,,t,h1^3,,,,,,,XX

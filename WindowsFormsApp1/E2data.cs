@@ -390,6 +390,84 @@ namespace WindowsFormsApp1
             }
             public Monomial(string concatName) // throw exception if the parsing fails 
             {
+                bool readingIndex = false;
+                bool readingExponant = false;
+
+                Symbol = "";
+                Index = null;
+                Exponant = null;
+
+                foreach (char c in concatName)
+                {
+                    if (readingIndex)
+                    {
+                        if (c == '^')
+                        {
+                            Exponant = 0;
+                            readingExponant = true;
+                            readingIndex = false;
+                        }
+                        else if (c >= '0' && c <= '9')
+                        {
+                            Index *= 10;
+                            Index += c - '0';
+                        }
+                        else if(c == '\'')
+                        {
+                            Symbol += c;
+                        }
+                        else
+                        {
+                            // Problem throw exception!
+                        }
+                    }
+                    else if (readingExponant)
+                    {
+                        if (c >= '0' && c <= '9')
+                        {
+                            Exponant *= 10;
+                            Exponant += c - '0';
+                        }
+                        else
+                        {
+                            // Problem throw exception!
+                        }
+
+                    }
+                    else
+                    {
+                        if (c >= '0' && c <= '9')
+                        {
+                            if (Symbol == "" && c == '1') // the very unique case when the element is 1, and thus does it's symbol is the number 1 (which is not a subscript)
+                                Symbol += c;
+                            else
+                            {
+                                Index = c - '0';
+                                readingIndex = true;
+                                readingExponant = false; // although it should never arrive here, as the index is before the exponant
+                            }
+
+                        }
+                        else if(c == '_')
+                        {
+                            Index = 0;
+                            readingIndex = true;
+                            readingExponant = false; // although it should never arrive here, as the index is before the exponant
+                        }
+                        else if(c == '^')
+                        {
+                            Exponant = 0;
+                            readingIndex = false;
+                            readingExponant = true;
+                        }
+                        else
+                            Symbol += c;
+                    }
+                        
+                }
+                 
+                // Old name parser
+                /*
                 var letters = concatName.TakeWhile(Char.IsLetter); // this means that the name has to start with a letter!
                 Symbol = new string(letters.ToArray());
 
@@ -444,7 +522,9 @@ namespace WindowsFormsApp1
                             // return an error or something!
                         }
                     }
-                }
+                }*/
+
+
             }
 
             public string Symbol;
@@ -502,6 +582,8 @@ namespace WindowsFormsApp1
         public List<Monomial>[] NameOfExtTargets;
         public List<string>[] PropertyExtTarget;
 
+        public int Shift;
+
         private GeometricPoint GeomPoint;
         public int OffsetX = 0;
         public int OffsetY = 0;
@@ -541,17 +623,19 @@ namespace WindowsFormsApp1
             for (int i = 0; i < eachMonomial.Length; i++)
                 Name.Add(new Monomial(eachMonomial[i]));
 
-            #region Parse Stem, Filtration, Weight, TauTorsion
+            #region Parse Stem, Filtration, Weight, TauTorsion, Shift
             try
             {
                 Stem = int.Parse(lineFromCSV[indicesNonExt[1]]);
                 Filtration = int.Parse(lineFromCSV[indicesNonExt[2]]);
                 Weight = int.Parse(lineFromCSV[indicesNonExt[3]]);
                 TauTorsion = int.Parse(lineFromCSV[indicesNonExt[4]]);
+                Shift = int.Parse(lineFromCSV[indicesNonExt[7]]);
                 if (lineFromCSV[indicesNonExt[6]] == "")
                     LabelAngle = -90;
                 else
                     LabelAngle = int.Parse(lineFromCSV[indicesNonExt[6]]);
+                    
             }
             catch (FormatException e) // take care of this if it there is an exception
             {
@@ -559,12 +643,13 @@ namespace WindowsFormsApp1
             #endregion
 
             #region Parse the Label and its Angle
-
+        
+            
             string label = lineFromCSV[indicesNonExt[5]];
             if (label == "auto")
             {
                 IsLabelVisible = true;
-                LatexLabel = AssembleLatexName();
+               LatexLabel = AssembleLatexName();
             }
             else if (label == "none" )
             {
@@ -580,7 +665,7 @@ namespace WindowsFormsApp1
                 IsLabelVisible = true;
                 LatexLabel = label;
             }
-
+            
             #endregion
 
             #region Parse the Extensions

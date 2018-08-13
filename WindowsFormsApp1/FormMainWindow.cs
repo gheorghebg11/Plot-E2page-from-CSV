@@ -30,14 +30,15 @@ namespace WindowsFormsApp1
         #region Global Parameters that the user can change
 
         // Words for Parsing the .csv
-        static private string[][] WordsForNonExtensionAttributes = new string[7][] {
+        static private string[][] WordsForNonExtensionAttributes = new string[8][] {
         new string[1] { "name" },
         new string[2] { "s", "stem" },
         new string[3] { "f", "filt", "filtration" },
         new string[2] { "w", "weight" },
-        new string[3] { "ttorsion", "tautorsion", "taut" },
+        new string[3] { "tautorsion", "ttorsion", "taut" },
         new string[1] { "label" },
-        new string[1] { "angle" } };
+        new string[1] { "angle" },
+        new string[1] { "shift" } };
 
     static private string[][] WordsForExtensionAttributes = new string[3][] {
         new string[3] { "target", "ext", "extension" },
@@ -102,7 +103,7 @@ namespace WindowsFormsApp1
         private const int ResolutionFactorForBestFitScreen = 25; // increase for better resolution in BestFitScreen mode
 
         // Other
-        static public int MaxNbrOpenCommentWindows = 3; // public for FormNotes to access.
+        static public int MaxNbrOpenCommentWindows = 10; // public for FormNotes to access.
 
         // TO NOT CHANGE
         private const int UpperBoundStem = 150; // change when we got there, if we got there...
@@ -110,7 +111,7 @@ namespace WindowsFormsApp1
 
         #endregion
 
-        #region Private (internal) Fields
+        #region Fields
         static private E2data E2data;
         static private E2graph E2graph;
         static private Bitmap BitmapForE2Chart; // the Bitmap contains the graph
@@ -607,6 +608,41 @@ namespace WindowsFormsApp1
             }
         }
 
+        private void saveAsCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (E2data != null)
+            {
+                int nbrCol = WordsForNonExtensionAttributes.Length + E2data.Extensions.Count * 2;
+                string header = System.String.Empty;
+
+                for(int i=0; i< WordsForNonExtensionAttributes.Length; i++)
+                    header += WordsForNonExtensionAttributes[i][0] + ", ";
+
+                for (int i = 0; i < E2data.Extensions.Count; i++)
+                    header += E2data.Extensions[i].NameElem + " info, " + E2data.Extensions[i].NameElem + " target, ";
+
+                header = header.Substring(0, header.Length - 2); //remove the last space and ,
+
+
+
+
+                string filePath = Application.StartupPath.ToString();
+                filePath = Path.GetFullPath(Path.Combine(filePath, @"..\..\...\\test.csv"));
+
+                // Create and write the csv file
+                File.WriteAllText(filePath, header);
+                
+
+
+            }
+            else
+            {
+                MessageBox.Show("There is no loaded data!");
+            }
+            
+
+        }
+
         private void SaveAsPDF_MenuButton(object sender, EventArgs e)
         {
             #region Open, Create the pdf file
@@ -923,6 +959,7 @@ namespace WindowsFormsApp1
         }
 
         #endregion
+
 
     }
 

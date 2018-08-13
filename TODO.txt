@@ -1,46 +1,39 @@
-TODO :
-	- careful about tau divisble extensions when seeing if an element is an extension to set its label
-	- after parsing the header, check that the extension header is okay, i.e., that each info has a target and each target has an info in indicesHeaderForExt
-	- deal with exceptions
-	- If anything goes wrong, such as non-empty extension info with an empty extension target, then the code should return a warning.
-	- I don't think the "better quality" is slower than the not better quality mode, but it's nicer. Check out.
-	- Do I really need the class GeomPoint ? It doesn't have much and I could just add a point to E2data... (although its clearer like it is now..)
-	- Check options of the mathMLViewer. What more can I do there ? Do I need something else ? Ex: change font 
-	
+
 IMPROVE FEATURE :
 	- so far it understands alone extensions if the element by which we extend exists in the E2 page (if it's an extension of 1), that is it deduces the stem filt weight automatically
-	- so far can only do extension by indecomposable I THINK
+	- so far can only do extension by indecomposable I THINK	
+	- Do I really need the class GeomPoint ? It doesn't have much and I could just add a point to E2data... (although its clearer like it is now..)
+	- If anything goes wrong, such as non-empty extension info with an empty extension target, then the code should return a warning.
 	- labels on axis for the big file with max res are not good enough
+	- careful about tau divisble extensions when seeing if an element is an extension to set its label
 	- parsing the name of the element first identifies the symbol at the beginning. 
-		- Deal with the element 1 somehow! Right now it's an empty symbol with an index of 1. 
-		- Deal with Q'
 		- Deal with the word "Again"
-		- Deal with A+A', and element1 + element2, and B(A+A')
-		- Deal with A''
-		- Deal with D2'
 		- Deal with h1 . D1 h3^2
 		- Deal with x71,6
 		- If the parsing fails, then can record the name of the excel cell for name...
+	- I don't think the "better quality" is slower than the not better quality mode, but it's nicer. Check out.
+	- if a point is moved too far right or left and "exits its (s,f)", throw a warning letting the user know that you can't go further (and don't go further, otherwise you won't be able to pick it up again later on)
+	- if there is an upper bound line for the filtration, incorporate it so that we don't creat E2data to be tooooo huge.
+	- the field isPeriodicAndLastPoint is really only applied to h1, so make it so, i.e., indicate in name, only have it available if do h1 ext, etc
 		
 ADD FEATURES :
-	- implement the Get Info button
+	- Add exceptions
+	- Add XML 
 	- add checkbox whether you want to redraw immediately, or only when press refresh (or example to add or remove a bunch of labels and not have to wait each time for redraw)
-	- add a feature to only work locally and thus not recompile all. For ex redraw only what is visible on the screen or something like that
 	- add a variable "hasChanged" and only reset the geom points, etc, of things that changed.
 	- when a file is already loaded and you try to load a new file, as if you want to save or something and then open new file
-	- allow the user to configure QuickOpen
 	- add Save as PDF
 	- add Save Config
 	- add bouton to load default Config
-	- add little "Tutorial" to configure the main variables, and add what default should be..
+	- add little "Tutorial" to configure the main parameters, and add what default should be..
 	- add latex for the labels!
-	- if a point is moved too far right or left and "exits its (s,f)", throw a warning letting the user know that you can't go further (and don't go further, otherwise you won't be able to pick it up again later on)
-	- save the location of the last file, and when reopen OpenFileDialog, start from there
+	- Add save the location of the last file, and when reopen OpenFileDialog, start from there
 	- add the possiblity to add a point from the graph! Specify extensions, name, etc
-	- implement the REFRESHGRAPHLOCALLY
+	- Add the REFRESHGRAPHLOCALLY
 	- add weight checks, I think I've been checking all the rest, but not the weight. Dan says that it really helps eliminate typos.
 	- add a little bar around the graph, on the form, where we see the stem and filtration all the time, even when we're scrolled in the middle of the graph!
-	- Finish parsing all columns!
+	- PARse the differential column!
+	- Parse the hiddenTau column!
 	
 BUGS :
 	- bug : when moving point that has a h1 localization tower, the whole tower should move
@@ -51,4 +44,4 @@ ASK DAN:
 	- so extensions have colors, depending on the tau torsion of the target, but also depending or not if they hit powers of tau times a generator, these 2 notions never clash ? now it's coded so that the fact that we hit powers of tau times a generator takes priority.
 	- Elem in 107,24,58 appears twice in a row in the .csv with the name again, is it because there are 2 features in dr info ?
 	- MACROS FOR LATEX NAMES ??? t is \tau, k is \kappa, D is \D, 
-	- another idea is to not have the program output a pdf, but the necessary code to integrate in the .tex file. Would that work ? That would simplify my work as I don't have to compile latex code for the labels, axis, etc.
+	- another idea is to not have the program output a pdf, but the necessary code to integrate in the .tex file. Would that work ? That would simplify my work as I don't have to compile latex code for the labels, axis, etc
