@@ -49,9 +49,10 @@ namespace WindowsFormsApp1
             FormMainWindow.CommentWindows[IndexInArrayOfForms] = FormMainWindow.CommentWindows[otherWindowIndex];
             FormMainWindow.CommentWindows[otherWindowIndex] = null;
 
-            FormMainWindow.CommentWindows[IndexInArrayOfForms].IndexInArrayOfForms = IndexInArrayOfForms;
-
-            // PROBLEMS WITHTHIS!!!!
+            // if an element has really been changed, then update his entry in the array
+            if(IndexInArrayOfForms != otherWindowIndex)
+                FormMainWindow.CommentWindows[IndexInArrayOfForms].IndexInArrayOfForms = IndexInArrayOfForms;
+            
         }
 
         private void FormNotes_FormClosing(object sender, FormClosingEventArgs e)
