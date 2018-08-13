@@ -818,6 +818,20 @@ namespace WindowsFormsApp1
 
             return name;
         }
+
+        public string AssembleExtensionName(int nbrExt)
+        {
+            string name = System.String.Empty;
+
+            if(NameOfExtTargets[nbrExt] != null)
+            {
+                foreach (Monomial mono in NameOfExtTargets[nbrExt])
+                    name += mono.GetName();
+            }
+
+
+            return name;
+        }
     }
 
     public class GeometricPoint

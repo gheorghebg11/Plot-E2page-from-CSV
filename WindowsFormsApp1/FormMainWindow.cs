@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Text;
 
 using System.Drawing;
 
@@ -280,7 +281,7 @@ namespace WindowsFormsApp1
             if (E2data == null)
             {
                 string filePath = Application.StartupPath.ToString();
-                filePath = Path.GetFullPath(Path.Combine(filePath, @"..\..\...\\E2chartdata132shorter.csv"));
+                filePath = Path.GetFullPath(Path.Combine(filePath, @"..\..\...\\E2chartdata132.csv"));
                 OpenAndParseFile(filePath);
 
                 PrepareMenus(sender, e);
@@ -613,37 +614,31 @@ namespace WindowsFormsApp1
             if (E2data != null)
             {
                 int nbrCol = WordsForNonExtensionAttributes.Length + E2data.Extensions.Count * 2;
-                string header = System.String.Empty;
+                StringBuilder sb = new StringBuilder();
+                string delimiter = ","; // the delimiter in the .csv file
 
-                for(int i=0; i< WordsForNonExtensionAttributes.Length; i++)
-                    header += WordsForNonExtensionAttributes[i][0] + ", ";
+                //creating the header first
+                sb.AppendLine(AssembleCSVLineHeader(delimiter));
 
-                for (int i = 0; i < E2data.Extensions.Count; i++)
-                    header += E2data.Extensions[i].NameElem + " info, " + E2data.Extensions[i].NameElem + " target, ";
-
-                header = header.Substring(0, header.Length - 2); //remove the last space and ,
-
-                for(int s=0; s<E2data.Elements.Length; s++)
+                //now creating each line and put them in the String Builder
+                for (int s=0; s<E2data.Elements.Length; s++)
                 {
-                    for(int f=0; f<E2data.Elements[i].Length; f++)
+                    for(int f=0; f<E2data.Elements[s].Length; f++)
                     {
-                        for(int i=0; i<E2data.Elements[s][f].Count; i++)
+                        if(E2data.Elements[s][f] != null)
                         {
-                            //string csvLine = AssembleCSVLine
-
+                            foreach (Element elem in E2data.Elements[s][f])
+                                sb.AppendLine(AssembleCSVLine(elem, delimiter, nbrCol));
                         }
 
                     }
                 }
 
-
                 string filePath = Application.StartupPath.ToString();
                 filePath = Path.GetFullPath(Path.Combine(filePath, @"..\..\...\\test.csv"));
 
                 // Create and write the csv file
-                File.WriteAllText(filePath, header);
-                
-
+                File.WriteAllText(filePath, sb.ToString());
 
             }
             else
@@ -651,7 +646,6 @@ namespace WindowsFormsApp1
                 MessageBox.Show("There is no loaded data!");
             }
             
-
         }
 
         private void SaveAsPDF_MenuButton(object sender, EventArgs e)
@@ -969,13 +963,44 @@ namespace WindowsFormsApp1
             CreateExtensionMenu(sender, e);
         }
 
-        private string AssembleCSVLine()
+        private string AssembleCSVLineHeader(string delimiter)
         {
-            string csvLine = System.String.Empty;
+            string header = System.String.Empty;
 
+            for (int i = 0; i < WordsForNonExtensionAttributes.Length; i++)
+                header += WordsForNonExtensionAttributes[i][0] + delimiter + " ";
 
+            for (int i = 0; i < E2data.Extensions.Count; i++)
+                header += E2data.Extensions[i].NameElem + " info" + delimiter + " " + E2data.Extensions[i].NameElem + " target" + delimiter + " ";
 
-            return csvLine;
+            return header.Substring(0, header.Length - 2); //remove the last space and the delimiter
+        }
+
+        private string AssembleCSVLine(Element elem, string delimiter, int nbrCol)
+        {
+            string[] csvLine = new string[nbrCol];
+
+            csvLine[0] = elem.AssembleName();
+            csvLine[1] = elem.Stem.ToString();
+            csvLine[2] = elem.Filtration.ToString();
+            csvLine[3] = elem.Weight.ToString();
+            csvLine[4] = elem.TauTorsion.ToString();
+            csvLine[5] = elem.LatexLabel;
+            csvLine[6] = elem.LabelAngle.ToString();
+            csvLine[7] = elem.Shift.ToString();
+            
+            for(int i=0; i<E2data.Extensions.Count; i++)
+            {
+                if(elem.PropertyExtTarget[i] != null)
+                {
+                    foreach(string s in elem.PropertyExtTarget[i])
+                        csvLine[WordsForNonExtensionAttributes.Length + 2 * i] += s;
+                }
+
+                csvLine[WordsForNonExtensionAttributes.Length + 2 * i + 1] = elem.AssembleExtensionName(i);
+            }
+
+            return string.Join(delimiter, csvLine);
         }
 
         #endregion
