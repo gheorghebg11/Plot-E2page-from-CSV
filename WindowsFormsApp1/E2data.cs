@@ -377,7 +377,7 @@ namespace WindowsFormsApp1
         }
     }
 
-    class Element
+    public class Element
     {
         // -------------------------------------------------------- Internal structures --------------------------------------------------------
         public struct Monomial // should be done better, throw exception if not correct syntax, for ex if Letter should have 2 charcter, like Q'

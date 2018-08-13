@@ -101,6 +101,8 @@ namespace WindowsFormsApp1
         private const int DefaultYresA4 = 2480;
         private const int ResolutionFactorForBestFitScreen = 25; // increase for better resolution in BestFitScreen mode
 
+        // Other
+        static public int MaxNbrOpenCommentWindows = 3; // public for FormNotes to access.
 
         // TO NOT CHANGE
         private const int UpperBoundStem = 150; // change when we got there, if we got there...
@@ -115,6 +117,9 @@ namespace WindowsFormsApp1
         static private PictureBox PictureBox; // the picture box contains the Bitmap
         static private GraphSizeMode E2graphSizeMode;
         static private List<ToolStripMenuItem> ExtensionInMenu;
+
+        static public FormNotes[] CommentWindows;
+        static public int[][] CommentWindowsOpenCoord;
 
         static private bool LockedElement;
         static private int[] LockedElementStemFiltNbrinelem;
@@ -131,6 +136,9 @@ namespace WindowsFormsApp1
         public FormMainWindow()
         {
             InitializeComponent();
+
+            CommentWindows = new FormNotes[MaxNbrOpenCommentWindows];
+            CommentWindowsOpenCoord = new int[MaxNbrOpenCommentWindows][];
 
             comboBox1.Items.Add("Best Fit Screen");
             comboBox1.Items.Add("A4 Format");
@@ -288,7 +296,38 @@ namespace WindowsFormsApp1
 
         private void GetInfo_button_Click(object sender, EventArgs e) // To implement
         {
-            MessageBox.Show("Not functional yet!");
+            if (LockedElement)
+            {
+                int newFormIndex = 0;
+                bool windowAlreadyOpen = false;
+
+                while(newFormIndex < MaxNbrOpenCommentWindows && CommentWindowsOpenCoord[newFormIndex] != null)
+                {
+                    if (LockedElementStemFiltNbrinelem[0] == CommentWindowsOpenCoord[newFormIndex][0] &&
+                        LockedElementStemFiltNbrinelem[1] == CommentWindowsOpenCoord[newFormIndex][1] &&
+                        LockedElementStemFiltNbrinelem[2] == CommentWindowsOpenCoord[newFormIndex][2])
+                    {
+                        windowAlreadyOpen = true;
+                        break;
+                    }
+                        
+                    newFormIndex++;
+                }
+
+                if (newFormIndex == MaxNbrOpenCommentWindows)
+                    MessageBox.Show("You already have " + MaxNbrOpenCommentWindows + " open comment windows, close some windows to proceed. Note that you can also increase the max number of open windows by changing the value of MaxNbrOpenCommentWindows");
+                else if(windowAlreadyOpen)
+                    MessageBox.Show("You already have the comment window opened for the element " + E2data.GetElement(LockedElementStemFiltNbrinelem).AssembleName() + " !");
+                else
+                {
+                    CommentWindowsOpenCoord[newFormIndex] = (int[])LockedElementStemFiltNbrinelem.Clone();
+                    CommentWindows[newFormIndex] = new FormNotes(E2data.GetElement(LockedElementStemFiltNbrinelem), newFormIndex);
+                    CommentWindows[newFormIndex].Show();
+                }
+            }
+            else
+                MessageBox.Show("Select an element first!");
+
         }
 
         private void buttonUp_Click(object sender, EventArgs e)
