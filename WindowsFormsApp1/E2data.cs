@@ -101,8 +101,7 @@ namespace WindowsFormsApp1
 
                                     MaxStemExtensions = Math.Max(MaxStemExtensions, x);
                                     MaxFiltExtensions = Math.Max(MaxFiltExtensions, y);
-
-
+                                    
                                     break;
                                 }
                             }
@@ -183,20 +182,39 @@ namespace WindowsFormsApp1
                     if (Elements[x][y] != null && Elements[x][y].Count > 1)
                     {
                         // first make sure that the points we play with are visible, as we don't care about the ones that we added.
-                        int count = 0;
+                        List<int> elemNonLastPt = new List<int>();
+                        List<int> elemLastPt = new List<int>();
+
                         for (int i = 0; i < Elements[x][y].Count; i++)
                         {
                             if (!Elements[x][y][i].LastPointOfSomeExt)
-                                count++;
+                                elemNonLastPt.Add(i);
+                            else
+                                elemLastPt.Add(i);
                         }
 
-                        if(count > 1)
+                        // put the elements that are LastPoints at the end. (could be unecessary as they might be created after, but good measure and cheap).
+
+                        for(int j=0; j<elemLastPt.Count;j++)
+                        {
+                            for(int k= Elements[x][y].Count-1; k> elemLastPt[0]; k--)
+                            {
+                                if(!Elements[x][y][k].LastPointOfSomeExt)
+                                {
+                                    Element tempElem = Elements[x][y][k];
+                                    Elements[x][y][k] = Elements[x][y][elemLastPt[j]];
+                                    Elements[x][y][elemLastPt[j]] = tempElem;
+                                }
+                            }
+                        }
+
+                        if(elemNonLastPt.Count > 1)
                         {
                             bool areOrdered = true;
                             // we check if the order in the .csv file matches with the shifts
-                            for (int i = 0; i < Elements[x][y].Count; i++)
+                            for (int i = 0; i < elemNonLastPt.Count; i++)
                             {
-                                if (Elements[x][y][i].Shift != -(Elements[x][y].Count - 1) + 2 * i)
+                                if (Elements[x][y][i].Shift != -(elemNonLastPt.Count - 1) + 2 * i)
                                 {
                                     areOrdered = false;
                                     break;
@@ -206,7 +224,7 @@ namespace WindowsFormsApp1
                             // if the two orders don't agree (either error, or because we moved some manually), then we try to order them by using the shift of the .csv file, and if it fails (error in shifts) then we just do it automatically in the order of the .csv file
                             if (!areOrdered)
                             {
-                                int nbrElem = Elements[x][y].Count;
+                                int nbrElem = elemNonLastPt.Count;
                                 int[] arrayOfShifts = new int[nbrElem];
 
                                 // the bijection works as Dan -> Comp : k -> (k+nbrElem-1)/2 and the other way Comp -> Dan : k -> -(nbrElem-1) + 2k. So now we order them
@@ -230,7 +248,6 @@ namespace WindowsFormsApp1
                                             Element tempElem = Elements[x][y][(Elements[x][y][i].Shift + nbrElem - 1) / 2];
                                             Elements[x][y][(Elements[x][y][i].Shift + nbrElem - 1) / 2] = Elements[x][y][i];
                                             Elements[x][y][i] = tempElem;
-
                                         }
                                     }
                                 }
@@ -256,7 +273,7 @@ namespace WindowsFormsApp1
         public int MaxFiltExtensions;
         
         private int[] IndicesOfHeadersInCSV; 
-        private List<object[]> IndicesOfHeadersForExtensionsInCSV;
+        public List<object[]> IndicesOfHeadersForExtensionsInCSV;
 
         // -------------------------------------------------------- Methods --------------------------------------------------------
         /// <summary>
@@ -689,7 +706,7 @@ namespace WindowsFormsApp1
             for (int i = 0; i < eachMonomial.Length; i++)
                 Name.Add(new Monomial(eachMonomial[i]));
 
-            #region Parse Stem, Filtration, Weight, TauTorsion, Shift
+            #region Parse Stem, Filtration, Weight, TauTorsion, Shift, Note
             try
             {
                 Stem = int.Parse(lineFromCSV[indicesNonExt[1]]);
@@ -701,7 +718,9 @@ namespace WindowsFormsApp1
                     LabelAngle = -90;
                 else
                     LabelAngle = int.Parse(lineFromCSV[indicesNonExt[6]]);
-                    
+
+                Notes = lineFromCSV[indicesNonExt[8]];
+
             }
             catch (FormatException e) // take care of this if it there is an exception
             {
@@ -809,6 +828,8 @@ namespace WindowsFormsApp1
             LatexLabel = ExcelName;
             LabelAngle = -90;
 
+            Notes = "This point was automatically created as it starts an infinite tower of " + eachMonomial[eachMonomial.Length - 1] + " extensions";
+
         }
 
         // -------------------------------------------------------- Methods --------------------------------------------------------
@@ -900,11 +921,23 @@ namespace WindowsFormsApp1
             }
             else
                 return "";
-
-
-
-
         }
+
+        public string AssembleExtensionProperties(int nbrExt)
+        {
+            string name = System.String.Empty;
+
+            if (PropertyExtTarget[nbrExt] != null)
+            {
+                foreach (string s in PropertyExtTarget[nbrExt])
+                    name += s + " ";
+
+                return name.Substring(0, name.Length - 1);
+            }
+            else
+                return "";
+        }
+
     }
 
     public class GeometricPoint

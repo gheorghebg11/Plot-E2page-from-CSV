@@ -14,8 +14,9 @@ namespace WindowsFormsApp1
     {
         private Element ElementForWindow;
         private int IndexInArrayOfForms;
+        private string[] NamesOfExtendees;
 
-        public FormNotes(Element elem, int indexInArray)
+        public FormNotes(Element elem, int indexInArray, List<object[]> extensionsHeader)
         {
             InitializeComponent();
             ElementForWindow = elem;
@@ -23,6 +24,31 @@ namespace WindowsFormsApp1
 
             this.Text = ElementForWindow.AssembleName();
             this.textBox_Notes.Text = ElementForWindow.Notes;
+
+            this.label_elemName.Text = elem.AssembleName();
+            this.label_stem.Text = "stem       " + elem.Stem.ToString();
+            this.label_filt.Text = "filtration  " + elem.Filtration;
+            this.label_weight.Text = "weight    " + elem.Weight;
+
+            this.label_ext.Text = "";
+
+            NamesOfExtendees = new string[extensionsHeader.Count];
+            for (int i=0; i < elem.NameOfExtTargets.Length; i++)
+            {
+                if (i != 0)
+                    this.label_ext.Text += "\n\n";
+
+                NamesOfExtendees[i] = (string)extensionsHeader[i][0];
+                if(elem.NameOfExtTargets[i] != null)
+                {
+                    this.label_ext.Text += "ext by " + NamesOfExtendees[i] + " is    " + elem.AssembleExtensionName(i);
+                    if(elem.PropertyExtTarget[i] != null)
+                        this.label_ext.Text += "   with prop " + elem.AssembleExtensionProperties(i);
+                }
+                else
+                    this.label_ext.Text += "ext by " + NamesOfExtendees[i] + " is none";
+            }
+
         }
 
 

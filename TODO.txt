@@ -1,6 +1,5 @@
-
 WORKING NOW ON:
-	- creating the .csv file to output
+	- 
 
 IMPROVE FEATURE :
 	- so far it understands alone extensions if the element by which we extend exists in the E2 page (if it's an extension of 1), that is it deduces the stem filt weight automatically
@@ -17,7 +16,8 @@ IMPROVE FEATURE :
 	- I don't think the "better quality" is slower than the not better quality mode, but it's nicer. Check out.
 	- if a point is moved too far right or left and "exits its (s,f)", throw a warning letting the user know that you can't go further (and don't go further, otherwise you won't be able to pick it up again later on)
 	- if there is an upper bound line for the filtration, incorporate it so that we don't creat E2data to be tooooo huge.
-	- in the constructor of E2 data, it looks a lot for finding the extending elements h0,h1,h2,h3. Should stop the big for loop after finding them all and not keep going.
+	- when combine names, look if we can combine monomials! So for ex "h1 c0" times h1 should not be h1 c0 h1 but h1^2 c0
+	- when write to .csv, use the same columns as before, I can find them in INDICESOFHEADERinCSV
 		
 ADD FEATURES :
 	- Add exceptions
@@ -40,13 +40,14 @@ ADD FEATURES :
 	
 BUGS :
 	- bug : when moving point that has a h1 localization tower, the whole tower should move
-	- when jut quickopen, it seems like the recognition of point is messed up. Maybe need to be in full screen mode ?
+	- if the file is in use when you try to write in it, it will create an error. Shoudl check for that and if it's in use ask to close or something.
+	- if it doesn't find a header in the .csv, then should send an error and ingnore it. ALSO check that it found all the columns, otherwise problem.
+	- I think that the shift param is not quite good. I need to check what happens when there are some dots which are there just for the localization, they shouldn't count, and also adjust the shift if it's automatically processed. Need to first resolve the "again" tag issue and then check back.
 	
 		
 ASK DAN:
 	- so extensions have colors, depending on the tau torsion of the target, but also depending or not if they hit powers of tau times a generator, these 2 notions never clash ? now it's coded so that the fact that we hit powers of tau times a generator takes priority.
 	- Elem in 107,24,58 appears twice in a row in the .csv with the name again, is it because there are 2 features in dr info ?
-	- MACROS FOR LATEX NAMES ??? t is \tau, k is \kappa, D is \D, 
+	- what is the "again" tag ? Is that when you are not sure of its extension ? for example D x again. If so then I can draw no extension and I add in the NOTES part that there are 2 possible extensions
 	- another idea is to not have the program output a pdf, but the necessary code to integrate in the .tex file. Would that work ? That would simplify my work as I don't have to compile latex code for the labels, axis, etc
-	- if the label is auto at the beginning, the computer parses it and creates a label that will be a latex code. How do you want it encoded when you save back in .csv ? I can remember that it was written "auto" if you want, but I can also just immediately put the latex code. Better ?
 	- for the shift I am using your method, that is, use intervals of 2 between the points, where the middle one has coordinate 0. So for example if there are two points, they will be -1 and 1, if there are three poitns, they will be -2 0 and 2, etc. It's easy to change anyways.

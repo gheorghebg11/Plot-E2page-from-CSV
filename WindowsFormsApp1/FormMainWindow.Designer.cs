@@ -40,6 +40,7 @@
             this.FileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.propertiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsPdfToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OptionsMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.showFrameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.betterQualityToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,9 +64,7 @@
             this.Point_radiobutton = new System.Windows.Forms.RadioButton();
             this.Label_radiobutton = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.Remove_button = new System.Windows.Forms.Button();
-            this.saveAsCSVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.trackbar_zoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackbar_resolution)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -147,6 +146,12 @@
             this.saveAsPdfToolStripMenuItem.Name = "saveAsPdfToolStripMenuItem";
             resources.ApplyResources(this.saveAsPdfToolStripMenuItem, "saveAsPdfToolStripMenuItem");
             this.saveAsPdfToolStripMenuItem.Click += new System.EventHandler(this.SaveAsPDF_MenuButton);
+            // 
+            // saveAsCSVToolStripMenuItem
+            // 
+            this.saveAsCSVToolStripMenuItem.Name = "saveAsCSVToolStripMenuItem";
+            resources.ApplyResources(this.saveAsCSVToolStripMenuItem, "saveAsCSVToolStripMenuItem");
+            this.saveAsCSVToolStripMenuItem.Click += new System.EventHandler(this.saveAsCSVToolStripMenuItem_Click);
             // 
             // OptionsMenu
             // 
@@ -310,11 +315,6 @@
             resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
             // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
             // Remove_button
             // 
             resources.ApplyResources(this.Remove_button, "Remove_button");
@@ -322,19 +322,12 @@
             this.Remove_button.UseVisualStyleBackColor = true;
             this.Remove_button.Click += new System.EventHandler(this.ShowHide_button_Click);
             // 
-            // saveAsCSVToolStripMenuItem
-            // 
-            this.saveAsCSVToolStripMenuItem.Name = "saveAsCSVToolStripMenuItem";
-            resources.ApplyResources(this.saveAsCSVToolStripMenuItem, "saveAsCSVToolStripMenuItem");
-            this.saveAsCSVToolStripMenuItem.Click += new System.EventHandler(this.saveAsCSVToolStripMenuItem_Click);
-            // 
             // FormMainWindow
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.Controls.Add(this.Remove_button);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -404,7 +397,6 @@
         private System.Windows.Forms.ToolStripMenuItem showWarningToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem getInfoOnClickToolStripMenuItem1;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button Remove_button;
         private System.Windows.Forms.ToolStripMenuItem saveAsCSVToolStripMenuItem;
     }

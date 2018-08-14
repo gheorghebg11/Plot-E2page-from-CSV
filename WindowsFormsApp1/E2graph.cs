@@ -356,14 +356,14 @@ namespace WindowsFormsApp1
                                 for (int j = 0; j < extensionInfo.Count; j++)
                                 {
                                     string extinfo = extensionInfo[j].Replace(" ", "");
+                                    
+                                        if (extinfo.Contains("h"))
+                                        {
+                                            currentPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
+                                            extinfo = extinfo.Replace("h", "");
+                                        }
 
-                                    if (extinfo.Contains("h"))
-                                    {
-                                        currentPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dot;
-                                        extinfo = extinfo.Replace("h", "");
-                                    }
-
-                                    if (extinfo.Contains("t"))
+                                    if (extinfo.Length > 0 && extinfo[0] == 't')
                                     {
                                         extinfo = extinfo.Replace("t", "");
                                         if (extinfo == "")

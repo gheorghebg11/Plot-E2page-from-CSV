@@ -31,15 +31,16 @@ namespace WindowsFormsApp1
         #region Global Parameters that the user can change
 
         // Words for Parsing the .csv
-        static private string[][] WordsForNonExtensionAttributes = new string[8][] {
+        static private string[][] WordsForNonExtensionAttributes = new string[9][] {
         new string[1] { "name" },
         new string[2] { "s", "stem" },
         new string[3] { "f", "filt", "filtration" },
         new string[2] { "w", "weight" },
         new string[3] { "tautorsion", "ttorsion", "taut" },
-        new string[1] { "label" },
+        new string[3] { "label" , "latex", "latexlabel" },
         new string[1] { "angle" },
-        new string[1] { "shift" } };
+        new string[1] { "shift" },
+        new string[2] { "notes" , "comments" } };
 
     static private string[][] WordsForExtensionAttributes = new string[3][] {
         new string[3] { "target", "ext", "extension" },
@@ -323,7 +324,7 @@ namespace WindowsFormsApp1
                 else
                 {
                     CommentWindowsOpenCoord[newFormIndex] = (int[])LockedElementStemFiltNbrinelem.Clone();
-                    CommentWindows[newFormIndex] = new FormNotes(E2data.GetElement(LockedElementStemFiltNbrinelem), newFormIndex);
+                    CommentWindows[newFormIndex] = new FormNotes(E2data.GetElement(LockedElementStemFiltNbrinelem), newFormIndex, E2data.IndicesOfHeadersForExtensionsInCSV);
                     CommentWindows[newFormIndex].Show();
                 }
             }
@@ -756,7 +757,7 @@ namespace WindowsFormsApp1
 
         #endregion
 
-        #region Methods to create and show the graph
+        #region Other Methods needed
 
         private void OpenAndParseFile(string filepath)
         {
@@ -906,7 +907,7 @@ namespace WindowsFormsApp1
             int mouseX = e.Location.X;
             int mouseY = e.Location.Y;
 
-            label4.Text = mouseX + " x " + mouseY;
+            //label4.Text = mouseX + " x " + mouseY;
 
             int stem = (int)Math.Floor(((float)(mouseX * ResolutionBitmapToPictureBoxX - E2graph.Origin.X) + IntervalPixelPerUnit / 2) / IntervalPixelPerUnit);
             int filt = (int)Math.Floor(((float)(E2graph.Origin.Y - mouseY * ResolutionBitmapToPictureBoxX) + IntervalPixelPerUnit / 2) / IntervalPixelPerUnit);
@@ -937,9 +938,9 @@ namespace WindowsFormsApp1
                             LockedElement = true;
                             LockedElementStemFiltNbrinelem = new int[3] { stem, filt, i };
                             label3.Text = E2data.Elements[stem][filt][i].ExcelName;
-                            label3.Text += "\n \nStem = " + stem.ToString();
-                            label3.Text += "\nFiltration = " + filt.ToString();
-                            label3.Text += "\nWeight = " + E2data.Elements[stem][filt][i].Weight.ToString();
+                            label3.Text += "\n \nStem        " + stem.ToString();
+                            label3.Text += "\nFiltration  " + filt.ToString();
+                            label3.Text += "\nWeight    " + E2data.Elements[stem][filt][i].Weight.ToString();
 
                             LabelTextBox.Text = E2data.Elements[stem][filt][i].LatexLabel;
 
@@ -997,12 +998,12 @@ namespace WindowsFormsApp1
             string header = System.String.Empty;
 
             for (int i = 0; i < WordsForNonExtensionAttributes.Length; i++)
-                header += WordsForNonExtensionAttributes[i][0] + delimiter + " ";
+                header += WordsForNonExtensionAttributes[i][0] + delimiter;
 
             for (int i = 0; i < E2data.Extensions.Count; i++)
-                header += E2data.Extensions[i].NameElem + " info" + delimiter + " " + E2data.Extensions[i].NameElem + " target" + delimiter + " ";
+                header += E2data.Extensions[i].NameElem + " info" + delimiter + E2data.Extensions[i].NameElem + " target" + delimiter;
 
-            return header.Substring(0, header.Length - 2); //remove the last space and the delimiter
+            return header.Substring(0, header.Length - 1); //remove the last delimiter
         }
 
         private string AssembleCSVLine(Element elem, string delimiter, int nbrCol)
@@ -1014,14 +1015,10 @@ namespace WindowsFormsApp1
             csvLine[2] = elem.Filtration.ToString();
             csvLine[3] = elem.Weight.ToString();
             csvLine[4] = elem.TauTorsion.ToString();
-
-            if (elem.IsLabelVisible == true)
-                csvLine[5] = elem.LatexLabel; 
-            else
-                csvLine[5] = "none";
-
+            csvLine[5] = elem.LatexLabel;
             csvLine[6] = elem.LabelAngle.ToString();
             csvLine[7] = elem.Shift.ToString();
+            csvLine[8] = elem.Notes;
             
             for(int i=0; i<E2data.Extensions.Count; i++)
             {
@@ -1041,9 +1038,8 @@ namespace WindowsFormsApp1
             return string.Join(delimiter, csvLine);
         }
 
+
         #endregion
-
-
     }
 
 
