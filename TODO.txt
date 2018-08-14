@@ -17,7 +17,7 @@ IMPROVE FEATURE :
 	- I don't think the "better quality" is slower than the not better quality mode, but it's nicer. Check out.
 	- if a point is moved too far right or left and "exits its (s,f)", throw a warning letting the user know that you can't go further (and don't go further, otherwise you won't be able to pick it up again later on)
 	- if there is an upper bound line for the filtration, incorporate it so that we don't creat E2data to be tooooo huge.
-	- the field isPeriodicAndLastPoint is really only applied to h1, so make it so, i.e., indicate in name, only have it available if do h1 ext,
+	- in the constructor of E2 data, it looks a lot for finding the extending elements h0,h1,h2,h3. Should stop the big for loop after finding them all and not keep going.
 		
 ADD FEATURES :
 	- Add exceptions
@@ -49,3 +49,4 @@ ASK DAN:
 	- MACROS FOR LATEX NAMES ??? t is \tau, k is \kappa, D is \D, 
 	- another idea is to not have the program output a pdf, but the necessary code to integrate in the .tex file. Would that work ? That would simplify my work as I don't have to compile latex code for the labels, axis, etc
 	- if the label is auto at the beginning, the computer parses it and creates a label that will be a latex code. How do you want it encoded when you save back in .csv ? I can remember that it was written "auto" if you want, but I can also just immediately put the latex code. Better ?
+	- for the shift I am using your method, that is, use intervals of 2 between the points, where the middle one has coordinate 0. So for example if there are two points, they will be -1 and 1, if there are three poitns, they will be -2 0 and 2, etc. It's easy to change anyways.

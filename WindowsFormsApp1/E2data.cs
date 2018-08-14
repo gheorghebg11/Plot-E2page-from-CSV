@@ -97,19 +97,16 @@ namespace WindowsFormsApp1
                                 {
                                     foundElem = true;
 
-                                    bool isVisible = true;
+                                    Extensions.Add(new Extension((string)IndicesOfHeadersForExtensionsInCSV[i][0], x, y, Elements[x][y][j].Weight,  ref IndicesOfHeadersForExtensionsInCSV, extDefColor, true));
 
-                                    Extensions.Add(new Extension((string)IndicesOfHeadersForExtensionsInCSV[i][0], x, y, Elements[x][y][j].Weight,  ref IndicesOfHeadersForExtensionsInCSV, extDefColor, isVisible));
+                                    MaxStemExtensions = Math.Max(MaxStemExtensions, x);
+                                    MaxFiltExtensions = Math.Max(MaxFiltExtensions, y);
 
-                                    if(isVisible)
-                                    {
-                                        MaxStemExtensions = Math.Max(MaxStemExtensions, x);
-                                        MaxFiltExtensions = Math.Max(MaxFiltExtensions, y);
-                                    }
 
                                     break;
                                 }
                             }
+
                         }
                         if (foundElem)
                             break;
@@ -175,9 +172,76 @@ namespace WindowsFormsApp1
                     }
                 }
             }
-            
+
             #endregion
-            
+
+            #region Sort them at each spot (s,f), based on the shift info of the .csv file
+            for (int x = 0; x <= MaxStem; x++)
+            {
+                for (int y = 0; y <= MaxFilt; y++)
+                {
+                    if (Elements[x][y] != null && Elements[x][y].Count > 1)
+                    {
+                        // first make sure that the points we play with are visible, as we don't care about the ones that we added.
+                        int count = 0;
+                        for (int i = 0; i < Elements[x][y].Count; i++)
+                        {
+                            if (!Elements[x][y][i].LastPointOfSomeExt)
+                                count++;
+                        }
+
+                        if(count > 1)
+                        {
+                            bool areOrdered = true;
+                            // we check if the order in the .csv file matches with the shifts
+                            for (int i = 0; i < Elements[x][y].Count; i++)
+                            {
+                                if (Elements[x][y][i].Shift != -(Elements[x][y].Count - 1) + 2 * i)
+                                {
+                                    areOrdered = false;
+                                    break;
+                                }
+                            }
+
+                            // if the two orders don't agree (either error, or because we moved some manually), then we try to order them by using the shift of the .csv file, and if it fails (error in shifts) then we just do it automatically in the order of the .csv file
+                            if (!areOrdered)
+                            {
+                                int nbrElem = Elements[x][y].Count;
+                                int[] arrayOfShifts = new int[nbrElem];
+
+                                // the bijection works as Dan -> Comp : k -> (k+nbrElem-1)/2 and the other way Comp -> Dan : k -> -(nbrElem-1) + 2k. So now we order them
+                                for (int i = 0; i < nbrElem; i++)
+                                    arrayOfShifts[(Elements[x][y][i].Shift + nbrElem - 1) / 2] = Elements[x][y][i].Shift;
+
+                                bool entriesInCSVareGood = true;
+                                // if the entries in the .csv file are correct, the entry i should have value Elements[x][y][i].Shift and the boolean is not changed
+                                for (int i = 0; i < nbrElem; i++)
+                                {
+                                    if (arrayOfShifts[i] != -(nbrElem - 1) + 2 * i)
+                                        entriesInCSVareGood = false;
+                                }
+
+                                if (entriesInCSVareGood) // if the shift entries are good, then we re-order the elements according to those, if no, we leave them in peace and end all this nonsense.
+                                {
+                                    for (int i = 0; i < nbrElem; i++)
+                                    {
+                                        if (i != (Elements[x][y][i].Shift + nbrElem - 1) / 2) // if the ith element is not at its correct spot, then put it where it belongs and continue!
+                                        {
+                                            Element tempElem = Elements[x][y][(Elements[x][y][i].Shift + nbrElem - 1) / 2];
+                                            Elements[x][y][(Elements[x][y][i].Shift + nbrElem - 1) / 2] = Elements[x][y][i];
+                                            Elements[x][y][i] = tempElem;
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            #endregion
+
         }
 
         // -------------------------------------------------------- Properties and Fields --------------------------------------------------------

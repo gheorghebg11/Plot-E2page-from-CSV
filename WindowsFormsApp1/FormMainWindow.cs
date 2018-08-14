@@ -1014,7 +1014,12 @@ namespace WindowsFormsApp1
             csvLine[2] = elem.Filtration.ToString();
             csvLine[3] = elem.Weight.ToString();
             csvLine[4] = elem.TauTorsion.ToString();
-            csvLine[5] = elem.LatexLabel;
+
+            if (elem.IsLabelVisible == true)
+                csvLine[5] = elem.LatexLabel; 
+            else
+                csvLine[5] = "none";
+
             csvLine[6] = elem.LabelAngle.ToString();
             csvLine[7] = elem.Shift.ToString();
             
