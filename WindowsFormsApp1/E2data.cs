@@ -154,7 +154,11 @@ namespace WindowsFormsApp1
                                                 int tauTorsion = 0;
                                                 if ((string)IndicesOfHeadersForExtensionsInCSV[j][0] == "h1")
                                                     tauTorsion = 1;
+
                                                 Element targetElem = new Element(nameTarget, targetCoord[0], targetCoord[1], Elements[x][y][i].Weight + Extensions[j].WeightElem, tauTorsion, Elements[targetCoord[0]][targetCoord[1]].Count, ref IndicesOfHeadersForExtensionsInCSV, true);
+                                                targetElem.PropertyExtTarget[j] = new List<string>();
+                                                targetElem.PropertyExtTarget[j].Add("last");
+
                                                 Elements[targetCoord[0]][targetCoord[1]].Add(targetElem);
 
                                                 targetCoord[2] = Elements[targetCoord[0]][targetCoord[1]].Count - 1;
@@ -574,7 +578,7 @@ namespace WindowsFormsApp1
         public int Weight { get; }
         public int TauTorsion { get; } = 0;
 
-        public bool IsPeriodicAndLastPoint; // do better, i.e., specify for which extension it is so
+        public bool h1PeriodicAndLastPoint; // do better, i.e., specify for which extension it is so
 
         public int? ElemNbrInCSVfile { get; set; }
         public int ElemNbrInElementsAtStemFilt { get; set; }
@@ -609,9 +613,9 @@ namespace WindowsFormsApp1
         public Element(string[] lineFromCSV, ref int[] indicesNonExt, int elemNbrinCSV, int elemNbrinElematStemFilt, ref List<object[]> indicesHeaderForExt, bool isPeriodicAndLastPoint = false)
         {
             Name = new List<Monomial>();
-            IsPeriodicAndLastPoint = isPeriodicAndLastPoint;
+            h1PeriodicAndLastPoint = isPeriodicAndLastPoint;
             IsVisible = true;
-            if (IsPeriodicAndLastPoint)
+            if (h1PeriodicAndLastPoint)
                 IsVisible = false;
 
             ElemNbrInCSVfile = elemNbrinCSV;
@@ -718,11 +722,11 @@ namespace WindowsFormsApp1
             ElemNbrInCSVfile = null;
             ElemNbrInElementsAtStemFilt = elemnbrinElemstemfilt;
 
-            IsPeriodicAndLastPoint = isPeriodicAndLastPoint;
+            h1PeriodicAndLastPoint = isPeriodicAndLastPoint;
             IsLabelVisible = false;
             IsVisible = true;
 
-            if (IsPeriodicAndLastPoint)
+            if (h1PeriodicAndLastPoint)
                 IsVisible = false;
 
             ExcelName = concatName;
@@ -804,6 +808,7 @@ namespace WindowsFormsApp1
 
             return name;
         }
+
         public string AssembleLatexName()
         {
             string name = "";
@@ -826,11 +831,16 @@ namespace WindowsFormsApp1
             if(NameOfExtTargets[nbrExt] != null)
             {
                 foreach (Monomial mono in NameOfExtTargets[nbrExt])
-                    name += mono.GetName();
+                    name += mono.GetName() + " ";
+
+                return name.Substring(0, name.Length - 1);
             }
+            else
+                return "";
 
 
-            return name;
+
+
         }
     }
 

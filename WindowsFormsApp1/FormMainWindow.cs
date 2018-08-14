@@ -281,7 +281,7 @@ namespace WindowsFormsApp1
             if (E2data == null)
             {
                 string filePath = Application.StartupPath.ToString();
-                filePath = Path.GetFullPath(Path.Combine(filePath, @"..\..\...\\E2chartdata132.csv"));
+                filePath = Path.GetFullPath(Path.Combine(filePath, @"..\..\...\\E2chartdata132shorter.csv"));
                 OpenAndParseFile(filePath);
 
                 PrepareMenus(sender, e);
@@ -591,7 +591,10 @@ namespace WindowsFormsApp1
             {
                 using (OpenFileDialog l_ofd = new OpenFileDialog())
                 {
-                    l_ofd.InitialDirectory = @"C:\";   // default location where to open the dialog
+                    string filePath = Application.StartupPath.ToString();
+                    filePath = Path.GetFullPath(Path.Combine(filePath, @"..\..\.."));
+
+                    l_ofd.InitialDirectory = filePath;   // default location where to open the dialog
                     l_ofd.Filter = "Excel Spreadsheet|*.csv";
 
                     if (l_ofd.ShowDialog() == DialogResult.OK)
@@ -605,7 +608,28 @@ namespace WindowsFormsApp1
             }
             else
             {
-                    MessageBox.Show("You already have a file opened, duh, restart the program to open a new file.");
+                DialogResult result = MessageBox.Show("If you press OK and open a new file, all unsaved work will be lost", "Careful before exiting!", MessageBoxButtons.OKCancel);
+                
+                if(result == DialogResult.OK)
+                {
+                    using (OpenFileDialog l_ofd = new OpenFileDialog())
+                    {
+                        string filePath = Application.StartupPath.ToString();
+                        filePath = Path.GetFullPath(Path.Combine(filePath, @"..\..\.."));
+
+                        l_ofd.InitialDirectory = filePath;   // default location where to open the dialog
+                        l_ofd.Filter = "Excel Spreadsheet|*.csv";
+
+                        if (l_ofd.ShowDialog() == DialogResult.OK)
+                        {
+                            OpenAndParseFile(l_ofd.FileName);
+
+                            PrepareMenus(sender, e);
+                            CreateGraph();
+                        }
+                    }
+                }
+
             }
         }
 
