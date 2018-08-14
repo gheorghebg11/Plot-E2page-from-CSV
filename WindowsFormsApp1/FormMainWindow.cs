@@ -291,7 +291,7 @@ namespace WindowsFormsApp1
             }
             else
             {
-                MessageBox.Show("You already have a file opened, duh, restart the program to open a new file.");
+                MessageBox.Show("You already have a file opened, use the open file button in the file menu to open a new file.");
             }
 
         }
@@ -652,7 +652,12 @@ namespace WindowsFormsApp1
                         if(E2data.Elements[s][f] != null)
                         {
                             foreach (Element elem in E2data.Elements[s][f])
-                                sb.AppendLine(AssembleCSVLine(elem, delimiter, nbrCol));
+                            {
+                                string line = AssembleCSVLine(elem, delimiter, nbrCol);
+                                if (line != System.String.Empty) 
+                                    sb.AppendLine(AssembleCSVLine(elem, delimiter, nbrCol));
+                            }
+                                
                         }
 
                     }
@@ -1018,9 +1023,13 @@ namespace WindowsFormsApp1
                 if(elem.PropertyExtTarget[i] != null)
                 {
                     foreach(string s in elem.PropertyExtTarget[i])
-                        csvLine[WordsForNonExtensionAttributes.Length + 2 * i] += s;
+                    {
+                        if (s == "last")
+                            return System.String.Empty;
+                        else
+                            csvLine[WordsForNonExtensionAttributes.Length + 2 * i] += s;
+                    }
                 }
-
                 csvLine[WordsForNonExtensionAttributes.Length + 2 * i + 1] = elem.AssembleExtensionName(i);
             }
 

@@ -30,7 +30,7 @@
             <param name="wordForInfiniteExtension"> The word for an infinite tower of extensions (such as h1-periodic stuff) </param>
             <returns>Returns an int[3] containing (stem, filt, indexAtStemFilt) to locate it in Element. If the value is null, it means TODOOOO</returns>
         </member>
-        <member name="M:WindowsFormsApp1.Element.#ctor(System.String[],System.Int32[]@,System.Int32,System.Int32,System.Collections.Generic.List{System.Object[]}@,System.Boolean)">
+        <member name="M:WindowsFormsApp1.Element.#ctor(System.String[],System.Int32[]@,System.Int32,System.Int32,System.Collections.Generic.List{System.Object[]}@)">
             <summary> Constructor for Element whose input is a line from the .csv file as well as a recipe to know what information is where </summary>
             <param name="lineFromCSV">The line from the .csv file given as an array of string, cell by cell</param>
             <param name="indicesNonExt">The indexes are: [0] name, [1] stem, [2] filtration, [3] weight, [4] tauTorsion</param>
@@ -39,7 +39,7 @@
             <param name="indicesHeaderForExt">List where each object contains (string, int), where the string is the name of the extension element and int is its column in the .csv file and thus in <paramref name="lineFromCSV"></paramref> </param>
             <param name="isPeriodicAndLastPoint">Boolean indicating wheter or not there is a periodic tower of extensions starting from this element (the extension element should be implicit somehow) <paramref name="lineFromCSV"></paramref> </param>
         </member>
-        <member name="M:WindowsFormsApp1.Element.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{System.Object[]}@,System.Boolean)">
+        <member name="M:WindowsFormsApp1.Element.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{System.Object[]}@)">
             <summary>
             This constructor is only used when I have to create an extra point which does not appear in the .csv file. Usually because there is an infinite tower of extensions so we create one more point
             </summary>
