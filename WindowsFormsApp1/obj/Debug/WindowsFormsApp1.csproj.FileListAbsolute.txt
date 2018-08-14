@@ -301,3 +301,5 @@ F:\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\Wi
 F:\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.csproj.CopyComplete
 F:\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.exe
 F:\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\obj\Debug\WindowsFormsApp1.pdb
+C:\Users\Bogdan\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\bin\Debug\CsvHelper.dll
+C:\Users\Bogdan\Dropbox\Coding Stuff\Projects\C# - CsvToPdf\v4 Github\Plot-E2page-from-CSV\WindowsFormsApp1\bin\Debug\CsvHelper.xml
