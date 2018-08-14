@@ -155,7 +155,7 @@ namespace WindowsFormsApp1
                                                 if ((string)IndicesOfHeadersForExtensionsInCSV[j][0] == "h1")
                                                     tauTorsion = 1;
 
-                                                Element targetElem = new Element(nameTarget, targetCoord[0], targetCoord[1], Elements[x][y][i].Weight + Extensions[j].WeightElem, tauTorsion, Elements[targetCoord[0]][targetCoord[1]].Count, ref IndicesOfHeadersForExtensionsInCSV, true);
+                                                Element targetElem = new Element(nameTarget, targetCoord[0], targetCoord[1], Elements[x][y][i].Weight + Extensions[j].WeightElem, tauTorsion, Elements[targetCoord[0]][targetCoord[1]].Count, ref IndicesOfHeadersForExtensionsInCSV);
                                                 targetElem.PropertyExtTarget[j] = new List<string>();
                                                 targetElem.PropertyExtTarget[j].Add("last");
 
@@ -578,7 +578,7 @@ namespace WindowsFormsApp1
         public int Weight { get; }
         public int TauTorsion { get; } = 0;
 
-        public bool h1PeriodicAndLastPoint; // do better, i.e., specify for which extension it is so
+        public bool LastPointOfSomeExt; // the information for which extension can be found in PropertyExtTarget if there is an entry "last"
 
         public int? ElemNbrInCSVfile { get; set; }
         public int ElemNbrInElementsAtStemFilt { get; set; }
@@ -610,13 +610,11 @@ namespace WindowsFormsApp1
         /// <param name="elemNbrinElematStemFilt">The index of the element in the List at Elements[stem][filt]</param>
         /// <param name="indicesHeaderForExt">List where each object contains (string, int), where the string is the name of the extension element and int is its column in the .csv file and thus in <paramref name="lineFromCSV"></paramref> </param>
         /// <param name="isPeriodicAndLastPoint">Boolean indicating wheter or not there is a periodic tower of extensions starting from this element (the extension element should be implicit somehow) <paramref name="lineFromCSV"></paramref> </param>
-        public Element(string[] lineFromCSV, ref int[] indicesNonExt, int elemNbrinCSV, int elemNbrinElematStemFilt, ref List<object[]> indicesHeaderForExt, bool isPeriodicAndLastPoint = false)
+        public Element(string[] lineFromCSV, ref int[] indicesNonExt, int elemNbrinCSV, int elemNbrinElematStemFilt, ref List<object[]> indicesHeaderForExt)
         {
             Name = new List<Monomial>();
-            h1PeriodicAndLastPoint = isPeriodicAndLastPoint;
+            LastPointOfSomeExt = false;
             IsVisible = true;
-            if (h1PeriodicAndLastPoint)
-                IsVisible = false;
 
             ElemNbrInCSVfile = elemNbrinCSV;
             ElemNbrInElementsAtStemFilt = elemNbrinElematStemFilt;
@@ -669,7 +667,7 @@ namespace WindowsFormsApp1
                 IsLabelVisible = true;
                 LatexLabel = label;
             }
-            
+
             #endregion
 
             #region Parse the Extensions
@@ -695,10 +693,14 @@ namespace WindowsFormsApp1
                         string[] eachWord = lineFromCSV[((int)indicesHeaderForExt[i][2])].Split(' ');
 
                         for (int j = 0; j < eachWord.Length; j++)
-                           PropertyExtTarget[i].Add(eachWord[j]);
+                            PropertyExtTarget[i].Add(eachWord[j]);
+                           
                     }
                 }
             }
+            
+            if (LastPointOfSomeExt)
+                IsVisible = false;
 
             #endregion
 
@@ -715,19 +717,16 @@ namespace WindowsFormsApp1
         /// <param name="elemnbrinElemstemfilt"></param>
         /// <param name="indicesHeaderForExt"></param>
         /// <param name="isPeriodicAndLastPoint"></param>
-        public Element(string concatName, int stem, int filt, int weight, int tautorsion, int elemnbrinElemstemfilt, ref List<object[]> indicesHeaderForExt, bool isPeriodicAndLastPoint = true)
+        public Element(string concatName, int stem, int filt, int weight, int tautorsion, int elemnbrinElemstemfilt, ref List<object[]> indicesHeaderForExt)
         {
 
             Name = new List<Monomial>();
             ElemNbrInCSVfile = null;
             ElemNbrInElementsAtStemFilt = elemnbrinElemstemfilt;
 
-            h1PeriodicAndLastPoint = isPeriodicAndLastPoint;
+            LastPointOfSomeExt = true;
             IsLabelVisible = false;
-            IsVisible = true;
-
-            if (h1PeriodicAndLastPoint)
-                IsVisible = false;
+            IsVisible = false;
 
             ExcelName = concatName;
 

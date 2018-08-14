@@ -173,7 +173,7 @@ namespace WindowsFormsApp1
 
                         for (int i = 0; i < E2data.Elements[x][y].Count; i++)
                         {
-                            bool isvisible = !E2data.Elements[x][y][i].h1PeriodicAndLastPoint && E2data.Elements[x][y][i].IsVisible;
+                            bool isvisible = !E2data.Elements[x][y][i].LastPointOfSomeExt && E2data.Elements[x][y][i].IsVisible;
 
                             E2data.Elements[x][y][i].SetGeometricPoint(currentPoint);
 
@@ -186,7 +186,7 @@ namespace WindowsFormsApp1
                         // now shift the points if there are more than 1 per StemFilt intersection
                         for (int i = 0; i < count; i++)
                         {
-                            if(!(E2data.Elements[x][y][i].h1PeriodicAndLastPoint))
+                            if(!(E2data.Elements[x][y][i].LastPointOfSomeExt))
                                 E2data.Elements[x][y][i].ShiftXGeomPoint((2 * i - count + 1) * delta / 2);
                         }
                     }
@@ -202,7 +202,7 @@ namespace WindowsFormsApp1
                     if (E2data.Extensions[k].IndicesExtensions[i][1][2] != -1) // NOT GOOD
                     {
                         #region If the element is the end of a localization, then move it a bit
-                        if (E2data.GetElement(E2data.Extensions[k].IndicesExtensions[i][1]).h1PeriodicAndLastPoint == true)
+                        if (E2data.GetElement(E2data.Extensions[k].IndicesExtensions[i][1]).LastPointOfSomeExt == true)
                         {
                             E2data.GetElement(E2data.Extensions[k].IndicesExtensions[i][1]).ShiftXGeomPoint((arrowInLocalizationFactor - 1) * E2data.Extensions[k].StemElem * IntervalGridInPixelsPerUnit);
                             E2data.GetElement(E2data.Extensions[k].IndicesExtensions[i][1]).ShiftYGeomPoint((1 - arrowInLocalizationFactor) * E2data.Extensions[k].FiltElem * IntervalGridInPixelsPerUnit);
@@ -394,7 +394,7 @@ namespace WindowsFormsApp1
                             PointF targetPoint = E2data.GetPointF(E2data.Extensions[nbrOfExt].IndicesExtensions[i][1]);
 
                             // If the element is the end of a localization, draw an arrow towards it
-                            if (E2data.GetElement(E2data.Extensions[nbrOfExt].IndicesExtensions[i][1]).h1PeriodicAndLastPoint == true)
+                            if (E2data.GetElement(E2data.Extensions[nbrOfExt].IndicesExtensions[i][1]).LastPointOfSomeExt == true)
                             {
                                 DrawArrowEndOfLineExtension(currentPen, ref sourcePoint, ref targetPoint, arrowOpensAngle * (Math.PI / 180), arrowLength, arrowInsideDiagonal);
                             }
