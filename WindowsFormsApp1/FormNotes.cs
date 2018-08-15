@@ -41,12 +41,12 @@ namespace WindowsFormsApp1
                 NamesOfExtendees[i] = (string)extensionsHeader[i][0];
                 if(elem.NameOfExtTargets[i] != null)
                 {
-                    this.label_ext.Text += "ext by " + NamesOfExtendees[i] + " is    " + elem.AssembleExtensionName(i);
+                    this.label_ext.Text += "* " + NamesOfExtendees[i] + "   =    " + elem.AssembleExtensionName(i);
                     if(elem.PropertyExtTarget[i] != null)
                         this.label_ext.Text += "   with prop " + elem.AssembleExtensionProperties(i);
                 }
                 else
-                    this.label_ext.Text += "ext by " + NamesOfExtendees[i] + " is none";
+                    this.label_ext.Text += "* " + NamesOfExtendees[i] + "   =  0 / ? " ;
             }
 
         }
